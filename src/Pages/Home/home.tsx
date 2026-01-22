@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import Monopoly from "./monopoly.tsx";
 import "../../home.css";
-import { Server, Socket, io } from "../../assets/sockets.ts";
+import { Server, Socket, io, ISocket } from "../../assets/sockets.ts";
 import NotifyElement, { NotificatorRef } from "../../components/notificator.tsx";
 import { MonopolyCookie, User, botInitial } from "../../assets/types.ts";
 import SettingsNav from "../../components/settingsNav.tsx";
@@ -18,8 +18,11 @@ import { main as runBot } from "../../assets/bot/bot.ts";
 import Slider from "../../components/utils/slider.tsx";
 import { TranslateCode } from "../../assets/code.ts";
 import { CookieManager } from "../../assets/cookieManager.ts";
+import { useGame } from "../../services/GameContext.tsx";
+import { GameServiceSocket } from "../../services/GameServiceSocket.ts";
 
 export default function Home() {
+    const game = useGame();
     var cookie: MonopolyCookie;
     try {
         const getCookieString = CookieManager.get("monopolySettings");
@@ -38,7 +41,7 @@ export default function Home() {
     }
 
     const notifyRef = useRef<NotificatorRef>(null);
-    const [socket, SetSocket] = useState<Socket>();
+    const [socket, SetSocket] = useState<ISocket>();
     // Gameplay stuff
     const [name, SetName] = useState<string>("");
     const [addr, SetAddress] = useState<string>("");
@@ -85,7 +88,7 @@ export default function Home() {
 
     const joinButtonClicked = async () => {
         if (name.replace(" ", "").length === 0) {
-            notifyRef.current?.message("please add your name before joining", "info", 2);
+            notifyRef.current?.message("Vui lòng nhập tên trước khi tham gia", "info", 2);
             return;
         }
 
@@ -110,6 +113,25 @@ export default function Home() {
         }
         SetDisabled(true);
 
+        // Check if using GameService (Firebase)
+        if (game.service) {
+            try {
+                await game.connect('firebase');
+                await game.joinRoom(addr, name, 0); // 0 is default icon
+                
+                const socketAdapter = new GameServiceSocket(game.service);
+                SetSocket(socketAdapter);
+                SetSignedIn(true);
+                SetDisabled(false);
+                return;
+            } catch (e) {
+                notifyRef.current?.message(`Không thể tham gia phòng: ${e}`, "error", 2, () => {
+                    SetDisabled(false);
+                });
+                return;
+            }
+        }
+
         const address = TranslateCode(addr) as string;
         var socket: Socket;
         // const address = "localhost"
@@ -125,19 +147,19 @@ export default function Home() {
                         SetDisabled(false);
                         break;
                     case 1:
-                        notifyRef.current?.message("the game has already begun", "error", 2, () => {
+                        notifyRef.current?.message("Trò chơi đã bắt đầu", "error", 2, () => {
                             SetDisabled(false);
                         });
                         socket.disconnect();
                         break;
                     case 2:
-                        notifyRef.current?.message("too many players on the server", "error", 2, () => {
+                        notifyRef.current?.message("Phòng đã đầy", "error", 2, () => {
                             SetDisabled(false);
                         });
                         socket.disconnect();
                         break;
                     default:
-                        notifyRef.current?.message("unkown error", "error", 2, () => {
+                        notifyRef.current?.message("Lỗi không xác định", "error", 2, () => {
                             SetDisabled(false);
                         });
                         socket.disconnect();
@@ -146,7 +168,7 @@ export default function Home() {
                 }
             });
         } catch (r) {
-            notifyRef.current?.message(`Could not connect to peer ${addr}`, "error", 2, () => {
+            notifyRef.current?.message(`Không thể kết nối tới máy chủ ${addr}`, "error", 2, () => {
                 SetDisabled(false);
             });
         }
@@ -162,7 +184,7 @@ export default function Home() {
     function startButtonClicked(bots: botInitial[]) {
         try {
             if (name.replace(" ", "").length === 0) {
-                notifyRef.current?.message("please add your name before joining", "info", 2);
+                notifyRef.current?.message("Vui lòng nhập tên trước khi tham gia", "info", 2);
                 return;
             }
 
@@ -182,19 +204,19 @@ export default function Home() {
 
                             break;
                         case 1:
-                            notifyRef.current?.message("the game has already begun", "error", 2, () => {
+                            notifyRef.current?.message("Trò chơi đã bắt đầu", "error", 2, () => {
                                 SetDisabled(false);
                             });
                             socket.disconnect();
                             break;
                         case 2:
-                            notifyRef.current?.message("too many players on the server", "error", 2, () => {
+                            notifyRef.current?.message("Phòng đã đầy", "error", 2, () => {
                                 SetDisabled(false);
                             });
                             socket.disconnect();
                             break;
                         default:
-                            notifyRef.current?.message("unkown error", "error", 2, () => {
+                            notifyRef.current?.message("Lỗi không xác định", "error", 2, () => {
                                 SetDisabled(false);
                             });
                             socket.disconnect();
@@ -206,6 +228,14 @@ export default function Home() {
         } catch {
             SetDisabled(false);
         }
+    }
+
+    if (game.isLoading) {
+        return (
+            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', color: 'white', fontSize: '24px' }}>
+                Đang tải dịch vụ trò chơi...
+            </div>
+        );
     }
 
     return socket !== undefined && isSignedIn === true ? (
@@ -220,18 +250,18 @@ export default function Home() {
                         onClick={() => {
                             SetTab(0);
                         }}
-                        data-tooltip-hover="play"
+                        data-tooltip-hover="chơi"
                     >
-                        <img src="./icon.png" alt="" />
+                        <img src="./icon_app.svg" alt="" />
                     </button>
                     <button
                         data-select={tabIndex === 1}
                         onClick={() => {
                             SetTab(1);
                         }}
-                        data-tooltip-hover="server"
+                        data-tooltip-hover="máy chủ"
                     >
-                        <img src="./server.png" alt="" />
+                        <img src="./icon_server.svg" alt="" />
                     </button>
                     <button
                         data-select={tabIndex === 2}
@@ -239,7 +269,7 @@ export default function Home() {
                             SetTab(2);
                         }}
                         disabled={true}
-                        data-tooltip-hover="account"
+                        data-tooltip-hover="tài khoản"
                     >
                         <img src="./human.png" alt="" />
                     </button>
@@ -249,7 +279,7 @@ export default function Home() {
                         onClick={() => {
                             SetTab(3);
                         }}
-                        data-tooltip-hover="credits"
+                        data-tooltip-hover="thông tin"
                     >
                         <img src="./credits.png" alt="" />
                     </button>
@@ -258,9 +288,9 @@ export default function Home() {
                         onClick={() => {
                             SetTab(4);
                         }}
-                        data-tooltip-hover="monopolySettings"
+                        data-tooltip-hover="cài đặt"
                     >
-                        <img src="./settings.png" alt="" />
+                        <img src="./icon_settings.svg" alt="" />
                     </button>
                 </nav>
                 <main>
@@ -268,7 +298,7 @@ export default function Home() {
                         <SettingsNav />
                     ) : tabIndex === 3 ? (
                         <>
-                            <p>This Project was made by Itay Layzerovich</p>
+                            <p>Monopoly Game Project</p>
                             <div style={{ color: "white" }}>
                                 <p> As the developer of this Monopoly game project, it is essential to clarify the following legal aspects: </p>
                                 <ol>
@@ -371,18 +401,20 @@ export default function Home() {
                                         marginBottom: 0,
                                     }}
                                 >
-                                    peerjs hosting
+                                    Tạo phòng
                                 </p>
-                                <h3>Run A Server</h3>
+                                <h3>Tạo Phòng</h3>
                             </header>
                             {server !== undefined ? (
                                 <>
-                                    <p>server is already running, check the console.</p>
+                                    <p>Máy chủ đang chạy.</p>
                                     <table>
-                                        <tr>
-                                            <td>Code</td>
-                                            <td style={{ userSelect: "all" }}>{server.code}</td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>Mã Phòng</td>
+                                                <td style={{ userSelect: "all" }}>{server.code}</td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                     <center>
                                         {" "}
@@ -397,28 +429,30 @@ export default function Home() {
                                                 SetServer(undefined);
                                             }}
                                         >
-                                            Kill Server
+                                            Đóng Phòng
                                         </button>
                                     </center>
                                 </>
                             ) : (
                                 <>
-                                    <p>all the servers logs will can be seen in the console</p>
+                                    <p>Nhật ký máy chủ có thể xem trong console</p>
                                     <table>
-                                        <tr>
-                                            <td>PlayersCount</td>
-                                            <td>
-                                                <Slider
-                                                    onChange={(e) => {
-                                                        SetServerPCount(parseInt(e.currentTarget.value));
-                                                    }}
-                                                    max={6}
-                                                    min={1}
-                                                    defaultValue={serverPCount}
-                                                    step={1}
-                                                />
-                                            </td>
-                                        </tr>
+                                        <tbody>
+                                            <tr>
+                                                <td>Số lượng người chơi</td>
+                                                <td>
+                                                    <Slider
+                                                        onChange={(e) => {
+                                                            SetServerPCount(parseInt(e.currentTarget.value));
+                                                        }}
+                                                        max={6}
+                                                        min={1}
+                                                        defaultValue={serverPCount}
+                                                        step={1}
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </tbody>
                                     </table>
                                     <center>
                                         {" "}
@@ -427,9 +461,38 @@ export default function Home() {
                                             style={{
                                                 marginTop: 13,
                                             }}
-                                            onClick={(e) => {
+                                            onClick={async (e) => {
                                                 e.currentTarget.disabled = true;
-                                                e.currentTarget.innerHTML = "Starting Server";
+                                                e.currentTarget.innerHTML = "Đang tạo phòng...";
+                                                
+                                                // Check if using GameService (Firebase)
+                                                if (game.service) {
+                                                    try {
+                                                        await game.connect('firebase');
+                                                        const room = await game.createRoom("Host", 0, serverPCount);
+                                                        
+                                                        // Mock server object for UI compatibility
+                                                        const mockServer = {
+                                                            code: room.code,
+                                                            stop: () => game.leaveRoom(),
+                                                            logFunction: () => {},
+                                                            renderFunction: () => {},
+                                                            logs: [],
+                                                            OnLogs: () => {},
+                                                            RenderLogs: () => {}
+                                                        } as unknown as Server;
+                                                        
+                                                        SetServer(mockServer);
+                                                        e.currentTarget.disabled = false;
+                                                        return;
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                        e.currentTarget.disabled = false;
+                                                        e.currentTarget.innerHTML = "Tạo Phòng";
+                                                        return;
+                                                    }
+                                                }
+
                                                 onlineServer(serverPCount, (host, server) => {
                                                     server.code = host;
                                                     SetAddress(host);
@@ -440,7 +503,7 @@ export default function Home() {
                                                 });
                                             }}
                                         >
-                                            Run Server
+                                            Tạo Phòng
                                         </button>
                                     </center>
                                 </>
@@ -450,14 +513,6 @@ export default function Home() {
                         <>
                             <header>
                                 Welcome to the <h3>MONOPOLY</h3>{" "}
-                                <p
-                                    style={{ fontSize: 9, cursor: "pointer", opacity: 0.8, width: "fit-content" }}
-                                    onClick={() => {
-                                        document.location.href = "/";
-                                    }}
-                                >
-                                    @itaylayzer - 10.12.23
-                                </p>{" "}
                                 Game
                             </header>
                             <JoinScreen

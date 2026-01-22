@@ -1,11 +1,11 @@
 import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
 import { Socket } from "../../assets/sockets.ts";
 import { Player } from "../../assets/player.ts";
-import DiceIcon from "../../../public/roll.png";
+import DiceIcon from "../../../public/icon_roll.svg";
 import { translateGroup } from "./streetCard.tsx";
 import monopolyJSON from "../../assets/monopoly.json";
-import HouseIcon from "../../../public/h.png";
-import HotelIcon from "../../../public/ho.png";
+import HouseIcon from "../../../public/icon_house.svg";
+import HotelIcon from "../../../public/icon_hotel.svg";
 import { MonopolyCookie, MonopolySettings } from "../../assets/types.ts";
 // @ts-ignore
 import { CookieManager } from "../../assets/cookieManager.ts";
@@ -62,39 +62,39 @@ const playersTab = forwardRef<PlayersTabRef, PlayersTabProps>((props, ref) => {
                         SetCurrentPlayer(undefined);
                     }}
                 >
-                    Players
+                    Đồng chí
                 </h3>
                 {current !== undefined ? (
                     <>
                         <table>
                             <tr>
-                                <td>balance</td>
+                                <td>GTTD</td>
                                 <td>{current.balance}</td>
                             </tr>
                             <tr>
-                                <td>position</td>
+                                <td>Vị trí</td>
                                 <td>
                                     {propretyMap.get(current.position)?.name} [{current.position}]
                                 </td>
                             </tr>
                             <tr>
-                                <td>properties counts</td>
+                                <td>Số cơ sở</td>
                                 <td>{current.properties.length}</td>
                             </tr>
                             <tr>
-                                <td>houses counts</td>
+                                <td>Số nhà máy</td>
                                 <td>{sum(current.properties.filter((v) => typeof v.count === "number").map((v) => v.count as number))}</td>
                             </tr>
                             <tr>
-                                <td>hotel counts</td>
+                                <td>Số xí nghiệp</td>
                                 <td>{current.properties.filter((v) => v.count === "h").length}</td>
                             </tr>
                             <tr>
-                                <td>get-out cards</td>
+                                <td>Thẻ miễn trừ</td>
                                 <td>{current.getoutCards}</td>
                             </tr>
                             <tr>
-                                <td>is in jail</td>
+                                <td>Đang bị giam</td>
                                 <td>{current.isInJail.toString()}</td>
                             </tr>
                         </table>

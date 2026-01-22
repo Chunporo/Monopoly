@@ -1,19 +1,21 @@
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react";
-import RollIcon from "../../../public/roll.png";
-import HouseIcon from "../../../public/h.png";
-import HotelIcon from "../../../public/ho.png";
+import RollIcon from "../../../public/icon_roll.svg";
+import HouseIcon from "../../../public/icon_house.svg";
+import HotelIcon from "../../../public/icon_hotel.svg";
 import { Player } from "./../../assets/player.ts";
-import { Socket } from "../../assets/sockets.ts";
+import { Socket, ISocket } from "../../assets/sockets.ts";
 import StreetCard, { StreetDisplayInfo, UtilitiesDisplayInfo, RailroadDisplayInfo, translateGroup } from "./streetCard.tsx";
 import monopolyJSON from "../../assets/monopoly.json";
 import ChacneCard, { ChanceDisplayInfo } from "./specialCards.tsx";
 import { MonopolyCookie, MonopolySettings, GameTrading, MonopolyMode } from "../../assets/types.ts";
 import Slider from "../utils/slider.tsx";
 import { CookieManager } from "../../assets/cookieManager.ts";
+import QuizModal, { QuizQuestion } from "./QuizModal.tsx";
+import questionsData from "../../data/questions.json";
 interface MonopolyGameProps {
     players: Array<Player>;
     myTurn: boolean;
-    socket: Socket;
+    socket: ISocket;
     clickedOnBoard: (a: number) => void;
     tradeObj?: undefined | GameTrading | boolean;
     tradeApi: {
@@ -91,6 +93,53 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
 
     const [streetType, SetStreetType] = useState<"Street" | "Utilities" | "Railroad" | "Chance" | "CommunityChest">("Street");
 
+    // Quiz state
+    const [isQuizActive, setIsQuizActive] = useState<boolean>(false);
+    const [currentQuestion, setCurrentQuestion] = useState<QuizQuestion | null>(null);
+    const [pendingBuyAction, setPendingBuyAction] = useState<{
+        location: number;
+        propertyType: "Street" | "Utilities" | "Railroad";
+        streetInfo: StreetDisplayInfo | UtilitiesDisplayInfo | RailroadDisplayInfo;
+        onResponse: (action: "nothing" | "buy" | "someones" | "special_action" | "advance-buy", info: object) => void;
+        rolls?: number;
+    } | null>(null);
+
+    // Get random question from questions data
+    const getRandomQuestion = (): QuizQuestion => {
+        const questions = questionsData as QuizQuestion[];
+        const randomIndex = Math.floor(Math.random() * questions.length);
+        return questions[randomIndex];
+    };
+
+    // Handle quiz correct answer
+    const handleQuizCorrect = () => {
+        prop.socket.emit("quiz_end", true);
+        setIsQuizActive(false);
+        setCurrentQuestion(null);
+        // User can now interact with the street card
+    };
+
+    // Handle quiz wrong answer
+    const handleQuizWrong = () => {
+        prop.socket.emit("quiz_end", false);
+        if (pendingBuyAction) {
+            // Player answered wrong
+            if (pendingBuyAction.propertyType !== "Chance" && pendingBuyAction.propertyType !== "CommunityChest") {
+                 // Penalty for wrong answer on property
+                 prop.socket.emit("pay", {
+                     balance: 50, // Penalty amount
+                     from: prop.socket.id,
+                     to: "bank"
+                 });
+            }
+            pendingBuyAction.onResponse("nothing", {});
+        }
+        setIsQuizActive(false);
+        setCurrentQuestion(null);
+        setPendingBuyAction(null);
+        ShowStreet(false);
+    };
+
     function diceAnimation(a: number, b: number) {
         const element = document.getElementById("dice-panel") as HTMLDivElement;
 
@@ -139,11 +188,21 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
         });
     }
     function swipeSound() {
-        const _settings = (JSON.parse(decodeURIComponent(CookieManager.get("monopolySettings") as string)) as MonopolyCookie).settings;
-        let audio = new Audio("./card.mp3");
-        audio.volume = ((_settings?.audio[1] ?? 100) / 100) * ((_settings?.audio[0] ?? 100) / 100);
-        audio.loop = false;
-        audio.play();
+        try {
+            const cookieStr = CookieManager.get("monopolySettings");
+            let volume = 1;
+            if (cookieStr) {
+                const _settings = (JSON.parse(decodeURIComponent(cookieStr)) as MonopolyCookie).settings;
+                volume = ((_settings?.audio[1] ?? 100) / 100) * ((_settings?.audio[0] ?? 100) / 100);
+            }
+            
+            let audio = new Audio("card.mp3");
+            audio.volume = isNaN(volume) ? 1 : volume;
+            audio.loop = false;
+            audio.play().catch(e => console.warn("Audio play failed:", e));
+        } catch (e) {
+            console.error("Sound error:", e);
+        }
     }
 
     useImperativeHandle(ref, () => ({
@@ -169,19 +228,47 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                 function searchForButtons(
                     advanced: boolean,
                     location: number,
+                    buyBack: boolean = false,
                     fartherInfo?: {
                         rolls: number;
                     }
                 ) {
                     function clickSound() {
-                        const _settings = (JSON.parse(decodeURIComponent(CookieManager.get("monopolySettings") as string)) as MonopolyCookie).settings;
-                        let audio = new Audio("./click.mp3");
-                        audio.volume = ((_settings?.audio[1] ?? 100) / 100) * ((_settings?.audio[0] ?? 100) / 100);
-                        audio.loop = false;
-                        audio.play();
+                        try {
+                            const cookieStr = CookieManager.get("monopolySettings");
+                            let volume = 1;
+                            if (cookieStr) {
+                                const _settings = (JSON.parse(decodeURIComponent(cookieStr)) as MonopolyCookie).settings;
+                                volume = ((_settings?.audio[1] ?? 100) / 100) * ((_settings?.audio[0] ?? 100) / 100);
+                            }
+                            let audio = new Audio("click.mp3");
+                            audio.volume = isNaN(volume) ? 1 : volume;
+                            audio.loop = false;
+                            audio.play().catch(e => console.warn("Audio play failed:", e));
+                        } catch (e) {
+                            console.error("Sound error:", e);
+                        }
                     }
                     function func() {
-                        if (advanced) {
+                        if (buyBack) {
+                            const b = document.querySelector("button#card-response-yes");
+                            if (b) {
+                                const _property = propretyMap.get(location);
+                                const buyBackPrice = (_property?.price ?? 0) * 2;
+                                b.innerHTML = `Tiếp quản (${buyBackPrice} GTTD)`;
+                                (b as HTMLButtonElement).onclick = () => {
+                                    args.onResponse("buy_back", { price: buyBackPrice });
+                                    ShowStreet(false);
+                                };
+                                (document.querySelector("button#card-response-no") as HTMLButtonElement).onclick = () => {
+                                    clickSound();
+                                    args.onResponse("nothing", {});
+                                    ShowStreet(false);
+                                };
+                            } else {
+                                requestAnimationFrame(func);
+                            }
+                        } else if (advanced) {
                             const b = document.querySelector("div#advanced-responses");
 
                             if (b) {
@@ -208,7 +295,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                 for (let index = count + 1; index < 6; index++) {
                                     const myButton = document.createElement("button");
                                     if (index === 5) {
-                                        myButton.innerHTML = `buy hotel`;
+                                        myButton.innerHTML = `nâng cấp khách sạn`;
                                         // dont let someone buy hotel of not have a set of 4 houses
                                         myButton.disabled =
                                             index !== count + 1 ||
@@ -221,7 +308,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                             ShowStreet(false);
                                         };
                                     } else {
-                                        myButton.innerHTML = `buy ${index} house${index > 1 ? "s" : ""}`;
+                                        myButton.innerHTML = `xây dựng ${index} nhà`;
                                         myButton.onclick = () => {
                                             args.onResponse("advance-buy", {
                                                 state: index,
@@ -237,7 +324,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                 }
                                 // last button of cancel
                                 const continueButtons = document.createElement("button");
-                                continueButtons.innerHTML = "CONTINUE";
+                                continueButtons.innerHTML = "TIẾP TỤC";
                                 continueButtons.onclick = () => {
                                     clickSound();
                                     args.onResponse("nothing", {});
@@ -303,6 +390,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                 args.onResponse("nothing", {});
                                 return;
                             } else {
+                                // Show quiz instead of buy dialog for Utilities
                                 SetStreetType("Utilities");
                                 const streetInfo = {
                                     cardCost: x.price ?? -1,
@@ -312,10 +400,22 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                 SetStreetDisplay(streetInfo);
                                 SetAdvancedStreet(false);
 
+                                // Trigger quiz
+                                const question = getRandomQuestion();
+                                setCurrentQuestion(question);
+                                setPendingBuyAction({
+                                    location: args.location,
+                                    propertyType: "Utilities",
+                                    streetInfo: streetInfo,
+                                    onResponse: args.onResponse,
+                                    rolls: args.rolls,
+                                });
+                                prop.socket.emit("quiz_start");
+                                setIsQuizActive(true);
                                 swipeSound();
                                 ShowStreet(true);
                                 requestAnimationFrame(
-                                    searchForButtons(false, args.location, {
+                                    searchForButtons(false, args.location, false, {
                                         rolls: args.rolls,
                                     })
                                 );
@@ -336,15 +436,28 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                 args.onResponse("nothing", {});
                                 return;
                             } else {
+                                // Show quiz instead of buy dialog for Railroad
                                 SetStreetType("Railroad");
                                 const streetInfo = {
                                     cardCost: x.price ?? -1,
                                     title: x.name ?? "error",
-                                } as UtilitiesDisplayInfo;
+                                } as RailroadDisplayInfo;
                                 SetStreetDisplay(streetInfo);
+
+                                // Trigger quiz
+                                const question = getRandomQuestion();
+                                setCurrentQuestion(question);
+                                setPendingBuyAction({
+                                    location: args.location,
+                                    propertyType: "Railroad",
+                                    streetInfo: streetInfo,
+                                    onResponse: args.onResponse,
+                                });
+                                prop.socket.emit("quiz_start");
+                                setIsQuizActive(true);
                                 swipeSound();
                                 ShowStreet(true);
-                                requestAnimationFrame(searchForButtons(false, args.location));
+                                requestAnimationFrame(searchForButtons(false, args.location, false));
                             }
                         }
                     } else {
@@ -361,8 +474,37 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                     } else {
                         if (belong_to_others) {
                             args.onResponse("someones", {});
-                            ShowStreet(false);
-                            return;
+                            
+                            const buyBackPrice = (x.price ?? 0) * 2;
+                            if (localPlayer.balance >= buyBackPrice) {
+                                SetStreetType("Street");
+                                const streetInfo = {
+                                    cardCost: x.price ?? -1,
+                                    hotelsCost: x.ohousecost ?? -1,
+                                    housesCost: x.housecost ?? -1,
+                                    rent: x.rent ?? -1,
+                                    multpliedrent: x.multpliedrent
+                                        ? [
+                                              x.multpliedrent[0] ?? -1,
+                                              x.multpliedrent[1] ?? -1,
+                                              x.multpliedrent[2] ?? -1,
+                                              x.multpliedrent[3] ?? -1,
+                                              x.multpliedrent[4] ?? -1,
+                                          ]
+                                        : [-1, -1, -1, -1, -1],
+                                    rentWithColorSet: x.rent ? x.rent * 2 : -1,
+                                    title: x.name ?? "error",
+                                    group: x.group,
+                                } as StreetDisplayInfo;
+                                SetStreetDisplay(streetInfo);
+                                SetAdvancedStreet(false);
+                                ShowStreet(true);
+                                requestAnimationFrame(searchForButtons(false, args.location, true));
+                                return;
+                            } else {
+                                ShowStreet(false);
+                                return;
+                            }
                         }
                     }
                     if (belong_to_me && count === "h") {
@@ -390,10 +532,32 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                         group: x.group,
                     } as StreetDisplayInfo;
                     SetStreetDisplay(streetInfo);
-                    belong_to_me ? SetAdvancedStreet(true) : SetAdvancedStreet(false);
-                    swipeSound();
-                    ShowStreet(true);
-                    requestAnimationFrame(searchForButtons(belong_to_me, args.location));
+                    
+                    if (belong_to_me) {
+                        // Player owns this property - show upgrade dialog (no quiz)
+                        SetAdvancedStreet(true);
+                        swipeSound();
+                        ShowStreet(true);
+                        requestAnimationFrame(searchForButtons(true, args.location));
+                    } else {
+                        // Unowned property - show quiz instead of buy dialog
+                        SetAdvancedStreet(false);
+                        
+                        // Trigger quiz
+                        const question = getRandomQuestion();
+                        setCurrentQuestion(question);
+                        setPendingBuyAction({
+                            location: args.location,
+                            propertyType: "Street",
+                            streetInfo: streetInfo,
+                            onResponse: args.onResponse,
+                        });
+                        prop.socket.emit("quiz_start");
+                        setIsQuizActive(true);
+                        swipeSound();
+                        ShowStreet(true);
+                        requestAnimationFrame(searchForButtons(belong_to_me, args.location, false));
+                    }
                 }
             } else {
                 args.onResponse("nothing", {});
@@ -522,9 +686,14 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                     _img.style.aspectRatio = "1";
                     if (settings !== undefined && settings.accessibility[4] === true) {
                         _img.setAttribute("data-tooltip-color", x.color);
+                        _img.style.border = `3px solid ${x.color}`;
+                        _img.style.borderRadius = "50%";
+                        _img.style.boxSizing = "border-box";
                     } else if (_img.hasAttribute("data-tooltip-color")) {
                         (_img.querySelector("img") as HTMLImageElement).style.filter = ``;
                         _img.removeAttribute("data-tooltip-color");
+                        _img.style.border = "";
+                        _img.style.borderRadius = "";
                     }
 
                     // check if loaction is the same
@@ -1429,23 +1598,23 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                             <p>ROLL THE </p>
                             <img style={{ marginLeft: 10 }} src={RollIcon.replace("public/", "")} />
                         </button>
-                        <button data-button-type="pay" data-tooltip-hover="pay" aria-disabled={true}>
-                            <img src="pay1.png" />
+                        <button data-button-type="pay" data-tooltip-hover="trả tiền" aria-disabled={true}>
+                            <img src="icon_pay.svg" />
                         </button>
-                        <button data-button-type="card" data-tooltip-hover="card" aria-disabled={true}>
-                            <img src="golden-card.png" />
+                        <button data-button-type="card" data-tooltip-hover="thẻ" aria-disabled={true}>
+                            <img src="icon_card.svg" />
                         </button>
                         {prop.selectedMode.AllowDeals ? (
                             <button
                                 data-button-type="trade"
-                                data-tooltip-hover="trade"
+                                data-tooltip-hover="giao dịch"
                                 aria-disabled={false}
                                 onClick={() => {
                                     SetSended(true);
                                     prop.socket.emit("trade");
                                 }}
                             >
-                                <img src="morgage.png" />
+                                <img src="icon_trade.svg" />
                             </button>
                         ) : (
                             <></>
@@ -1473,7 +1642,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                             </>
                         ) : (
                             <>
-                                <h3>{advnacedStreet ? "would you like to buy this card?" : "you can buy houses and hotels"}</h3>
+                                <h3>{advnacedStreet ? "Bạn có muốn nâng cấp tài sản này?" : "Bạn có muốn tiếp quản tài sản này?"}</h3>
                                 {streetType === "Railroad" ? (
                                     <StreetCard railroad={streetDisplay as RailroadDisplayInfo} />
                                 ) : streetType === "Utilities" ? (
@@ -1487,8 +1656,8 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                             <div id="advanced-responses"></div>
                                         ) : (
                                             <>
-                                                <button id="card-response-yes">YES</button>
-                                                <button id="card-response-no">NO</button>
+                                                <button id="card-response-yes">CÓ</button>
+                                                <button id="card-response-no">KHÔNG</button>
                                             </>
                                         )}
                                     </center>
@@ -1569,7 +1738,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                                         }
                                                         prop.socket.emit("trade-update", b);
                                                     }}
-                                                    suffix=" M"
+                                                    suffix=" GTTD"
                                                 />
                                                 <br />
 
@@ -1691,7 +1860,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                             <table>
                                                 <tr>
                                                     <td>Balance</td>
-                                                    <td>{prop.tradeObj.turnPlayer.balance} M</td>
+                                                    <td>{prop.tradeObj.turnPlayer.balance} GTTD</td>
                                                 </tr>
                                                 {prop.tradeObj.turnPlayer.prop.length > 0 ? (
                                                     <tr>
@@ -1756,7 +1925,7 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                                             <table>
                                                 <tr>
                                                     <td>Balance</td>
-                                                    <td>{prop.tradeObj.againstPlayer.balance} M</td>
+                                                    <td>{prop.tradeObj.againstPlayer.balance} GTTD</td>
                                                 </tr>
                                                 {prop.tradeObj.againstPlayer.prop.length > 0 ? (
                                                     <tr>
@@ -1879,6 +2048,15 @@ const MonopolyGame = forwardRef<MonopolyGameRef, MonopolyGameProps>((prop, ref) 
                     </div>
                 </div>
             </div>
+
+            {/* Quiz Modal */}
+            {isQuizActive && currentQuestion && (
+                <QuizModal
+                    question={currentQuestion}
+                    onCorrect={handleQuizCorrect}
+                    onWrong={handleQuizWrong}
+                />
+            )}
         </>
     );
 });

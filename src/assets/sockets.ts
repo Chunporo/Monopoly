@@ -43,8 +43,16 @@ export function io(uri: string): Promise<Socket> {
 	});
 }
 
+export interface ISocket {
+    id: string;
+    events: Map<string, (args: any) => void>;
+    on(event_name: string | "disconnect", handler: (args: any) => void): void;
+    emit(event_name: string, args?: any): void;
+    disconnect(): void;
+}
+
 // class For Server
-export class Socket {
+export class Socket implements ISocket {
 	private client: DataConnection;
 	public events: Map<string, (args: any) => void>;
 	public id: string;

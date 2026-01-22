@@ -88,10 +88,14 @@
 
 
 body {
-    font-family: "Josefin Sans";
+    font-family: "Roboto Condensed", sans-serif;
     user-select: none;
     overflow-x: hidden;
+}
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Anton", sans-serif;
+    letter-spacing: 1px;
 }
 
 #root {
@@ -121,7 +125,7 @@ body {
     display: flex;
     flex-direction: column;
     background-color: white;
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(20, 20, 20);
     border-radius: 0px;
     border: 8px solid rgb(30, 30, 30);
     box-sizing: border-box;
@@ -483,7 +487,7 @@ main nav.main nav.header div.button.color img {
 }
 
 main nav.content {
-    background-color: rgb(25, 25, 25);
+    background-color: rgb(20, 20, 20);
     flex-grow: 1;
     justify-content: flex-end;
     padding-inline: 25px;
@@ -866,7 +870,7 @@ div.board {
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
     width: 900px;
-    background-image: url("/board2.png");
+    background-image: url("/newboard.svg");
     background-size: cover;
     box-shadow: 0px 0px 0px 3px black;
     z-index: 0;
@@ -922,7 +926,10 @@ div.board div#display-houses div.street-houses[data-rotate="4"] {
 div.board div#display-houses div.street-houses img {
     z-index: 4;
     display: block;
-    max-width: 20px;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    margin: 1px;
     align-self: center;
     filter: drop-shadow(0px 0px 5px black);
 }

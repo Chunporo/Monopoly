@@ -477,7 +477,18 @@ export async function main(host: string, initials: botInitial) {
                                 }, time_till_free);
                             },
                         });
-                        actionList?.action(actionList.actions[Math.floor(Math.random() * actionList.actions.length)]);
+                        
+                        if (actionList?.actions.includes("buy")) {
+                             const isCorrect = Math.random() > 0.3; 
+                             if (isCorrect) {
+                                 const choice = Math.random() > 0.2 ? "buy" : "cancel";
+                                 actionList.action(choice);
+                             } else {
+                                 actionList.action("cancel");
+                             }
+                        } else {
+                             actionList?.action(actionList.actions[Math.floor(Math.random() * actionList.actions.length)]);
+                        }
                     }
                 }
             },

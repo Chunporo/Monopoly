@@ -1,12 +1,18 @@
 {
     "properties": [
         {
-            "name": "Mediterranean Avenue",
+            "name": "Ruộng đất công",
             "id": "mediterraneanave",
             "posistion": 1,
             "price": 60,
             "rent": 2,
-            "multpliedrent": [10, 30, 90, 160, 250],
+            "multpliedrent": [
+                10,
+                30,
+                90,
+                160,
+                250
+            ],
             "housecost": 50,
             "group": "Purple",
             "ownedby": -1,
@@ -24,12 +30,18 @@
             "averageProbability": 2.06935
         },
         {
-            "name": "Baltic Avenue",
+            "name": "Công cụ thô sơ",
             "id": "balticave",
             "posistion": 3,
             "price": 60,
             "rent": 4,
-            "multpliedrent": [20, 60, 180, 320, 450],
+            "multpliedrent": [
+                20,
+                60,
+                180,
+                320,
+                450
+            ],
             "housecost": 50,
             "group": "Purple",
             "ownedby": -1,
@@ -47,12 +59,18 @@
             "averageProbability": 2.09965
         },
         {
-            "name": "Oriental Avenue",
+            "name": "Xưởng thợ thủ công",
             "id": "orientalave",
             "posistion": 6,
             "price": 100,
             "rent": 6,
-            "multpliedrent": [30, 90, 270, 400, 550],
+            "multpliedrent": [
+                30,
+                90,
+                270,
+                400,
+                550
+            ],
             "housecost": 50,
             "group": "lightgreen",
             "ownedby": -1,
@@ -69,12 +87,18 @@
             "averageProbability": 2.1969000000000003
         },
         {
-            "name": "Vermont Avenue",
+            "name": "Hầm mỏ Than",
             "id": "vermontave",
             "posistion": 8,
             "price": 100,
             "rent": 6,
-            "multpliedrent": [30, 90, 270, 400, 550],
+            "multpliedrent": [
+                30,
+                90,
+                270,
+                400,
+                550
+            ],
             "housecost": 50,
             "group": "lightgreen",
             "ownedby": -1,
@@ -91,12 +115,18 @@
             "averageProbability": 2.2542
         },
         {
-            "name": "Connecticut Avenue",
+            "name": "Nhà máy cơ khí",
             "id": "connecticutave",
             "posistion": 9,
             "price": 120,
             "rent": 8,
-            "multpliedrent": [40, 100, 300, 450, 600],
+            "multpliedrent": [
+                40,
+                100,
+                300,
+                450,
+                600
+            ],
             "housecost": 50,
             "group": "lightgreen",
             "ownedby": -1,
@@ -113,12 +143,18 @@
             "averageProbability": 2.23415
         },
         {
-            "name": "St. Charles Place",
+            "name": "Tòa báo Cứu Quốc",
             "id": "stcharlesplace",
             "posistion": 11,
             "price": 140,
             "rent": 10,
-            "multpliedrent": [50, 150, 450, 625, 750],
+            "multpliedrent": [
+                50,
+                150,
+                450,
+                625,
+                750
+            ],
             "housecost": 100,
             "group": "Violet",
             "ownedby": -1,
@@ -135,12 +171,18 @@
             "averageProbability": 2.62885
         },
         {
-            "name": "States Avenue",
+            "name": "Trường học Bình dân",
             "id": "statesave",
             "posistion": 13,
             "price": 140,
             "rent": 10,
-            "multpliedrent": [50, 150, 450, 625, 750],
+            "multpliedrent": [
+                50,
+                150,
+                450,
+                625,
+                750
+            ],
             "housecost": 100,
             "group": "Violet",
             "ownedby": -1,
@@ -157,12 +199,18 @@
             "averageProbability": 2.2731000000000003
         },
         {
-            "name": "Virginia Avenue",
+            "name": "Hiệu buôn nhỏ",
             "id": "virginiaave",
             "posistion": 14,
             "price": 160,
             "rent": 12,
-            "multpliedrent": [60, 180, 500, 700, 900],
+            "multpliedrent": [
+                60,
+                180,
+                500,
+                700,
+                900
+            ],
             "housecost": 100,
             "group": "Violet",
             "ownedby": -1,
@@ -179,12 +227,18 @@
             "averageProbability": 2.4452
         },
         {
-            "name": "St. James Place",
+            "name": "Nhà máy Dệt",
             "id": "stjamesplace",
             "posistion": 16,
             "price": 180,
             "rent": 14,
-            "multpliedrent": [70, 200, 550, 750, 950],
+            "multpliedrent": [
+                70,
+                200,
+                550,
+                750,
+                950
+            ],
             "housecost": 100,
             "group": "Orange",
             "ownedby": -1,
@@ -201,12 +255,18 @@
             "averageProbability": 2.7363
         },
         {
-            "name": "Tennessee Avenue",
+            "name": "Nhà máy Xay xát",
             "id": "tennesseeave",
             "posistion": 18,
             "price": 180,
             "rent": 14,
-            "multpliedrent": [70, 200, 550, 750, 950],
+            "multpliedrent": [
+                70,
+                200,
+                550,
+                750,
+                950
+            ],
             "housecost": 100,
             "group": "Orange",
             "ownedby": -1,
@@ -223,12 +283,18 @@
             "averageProbability": 2.8783000000000003
         },
         {
-            "name": "New York Avenue",
+            "name": "Hãng vận tải thủy",
             "id": "newyorkave",
             "posistion": 19,
             "price": 200,
             "rent": 16,
-            "multpliedrent": [80, 220, 600, 800, 1000],
+            "multpliedrent": [
+                80,
+                220,
+                600,
+                800,
+                1000
+            ],
             "housecost": 100,
             "group": "Orange",
             "ownedby": -1,
@@ -245,12 +311,18 @@
             "averageProbability": 2.9485
         },
         {
-            "name": "Kentucky Avenue",
+            "name": "Đồn điền Cao su",
             "id": "kentuckyave",
             "posistion": 21,
             "price": 220,
             "rent": 18,
-            "multpliedrent": [90, 250, 700, 875, 1050],
+            "multpliedrent": [
+                90,
+                250,
+                700,
+                875,
+                1050
+            ],
             "housecost": 150,
             "group": "Red",
             "ownedby": -1,
@@ -267,12 +339,18 @@
             "averageProbability": 2.72505
         },
         {
-            "name": "Indiana Avenue",
+            "name": "Sở Rượu",
             "id": "indianaave",
             "posistion": 23,
             "price": 220,
             "rent": 18,
-            "multpliedrent": [90, 250, 700, 875, 1050],
+            "multpliedrent": [
+                90,
+                250,
+                700,
+                875,
+                1050
+            ],
             "housecost": 150,
             "group": "Red",
             "ownedby": -1,
@@ -289,12 +367,18 @@
             "averageProbability": 2.6513999999999998
         },
         {
-            "name": "Illinois Avenue",
+            "name": "Sở Muối",
             "id": "illinoisave",
             "posistion": 24,
             "price": 240,
             "rent": 20,
-            "multpliedrent": [100, 300, 750, 925, 1100],
+            "multpliedrent": [
+                100,
+                300,
+                750,
+                925,
+                1100
+            ],
             "housecost": 150,
             "group": "Red",
             "ownedby": -1,
@@ -311,12 +395,18 @@
             "averageProbability": 3.08935
         },
         {
-            "name": "Atlantic Avenue",
+            "name": "Ngân hàng Đông Dương",
             "id": "atlanticave",
             "posistion": 26,
             "price": 260,
             "rent": 22,
-            "multpliedrent": [110, 330, 800, 975, 1150],
+            "multpliedrent": [
+                110,
+                330,
+                800,
+                975,
+                1150
+            ],
             "housecost": 150,
             "group": "Yellow",
             "ownedby": -1,
@@ -333,12 +423,18 @@
             "averageProbability": 2.6220999999999997
         },
         {
-            "name": "Ventnor Avenue",
+            "name": "Xuất khẩu Tư bản",
             "id": "ventnorave",
             "posistion": 27,
             "price": 260,
             "rent": 22,
-            "multpliedrent": [110, 330, 800, 975, 1150],
+            "multpliedrent": [
+                110,
+                330,
+                800,
+                975,
+                1150
+            ],
             "housecost": 150,
             "group": "Yellow",
             "ownedby": -1,
@@ -355,12 +451,18 @@
             "averageProbability": 2.599
         },
         {
-            "name": "Marvin Gardens",
+            "name": "Liên minh Độc quyền",
             "id": "marvingardens",
             "posistion": 29,
             "price": 280,
             "rent": 22,
-            "multpliedrent": [120, 360, 850, 1025, 1200],
+            "multpliedrent": [
+                120,
+                360,
+                850,
+                1025,
+                1200
+            ],
             "housecost": 150,
             "group": "Yellow",
             "ownedby": -1,
@@ -377,12 +479,18 @@
             "averageProbability": 2.5121
         },
         {
-            "name": "Pacific Avenue",
+            "name": "Căn cứ Bắc Sơn",
             "id": "pacificave",
             "posistion": 31,
             "price": 300,
             "rent": 26,
-            "multpliedrent": [130, 390, 900, 1100, 1275],
+            "multpliedrent": [
+                130,
+                390,
+                900,
+                1100,
+                1275
+            ],
             "housecost": 200,
             "group": "darkgreen",
             "ownedby": -1,
@@ -399,12 +507,18 @@
             "averageProbability": 2.6005000000000003
         },
         {
-            "name": "North Carolina Avenue",
+            "name": "Chiến khu Tân Trào",
             "id": "northcarolinaave",
             "posistion": 32,
             "price": 300,
             "rent": 26,
-            "multpliedrent": [130, 390, 900, 1100, 1275],
+            "multpliedrent": [
+                130,
+                390,
+                900,
+                1100,
+                1275
+            ],
             "housecost": 200,
             "group": "darkgreen",
             "ownedby": -1,
@@ -421,12 +535,18 @@
             "averageProbability": 2.5486500000000003
         },
         {
-            "name": "Pennsylvania Avenue",
+            "name": "Vùng Giải phóng",
             "id": "pennsylvaniaave",
             "posistion": 34,
             "price": 320,
             "rent": 28,
-            "multpliedrent": [150, 450, 1000, 1200, 1400],
+            "multpliedrent": [
+                150,
+                450,
+                1000,
+                1200,
+                1400
+            ],
             "housecost": 200,
             "group": "darkgreen",
             "ownedby": -1,
@@ -443,12 +563,18 @@
             "averageProbability": 2.42685
         },
         {
-            "name": "Park Place",
+            "name": "Công hữu Tư liệu SX",
             "id": "parkplace",
             "posistion": 37,
             "price": 350,
             "rent": 35,
-            "multpliedrent": [175, 500, 1100, 1300, 1500],
+            "multpliedrent": [
+                175,
+                500,
+                1100,
+                1300,
+                1500
+            ],
             "housecost": 200,
             "group": "darkblue",
             "ownedby": -1,
@@ -465,12 +591,18 @@
             "averageProbability": 2.12295
         },
         {
-            "name": "Boardwalk",
+            "name": "Đại đoàn kết Dân tộc",
             "id": "boardwalk",
             "posistion": 39,
             "price": 400,
             "rent": 50,
-            "multpliedrent": [200, 600, 1400, 1700, 2000],
+            "multpliedrent": [
+                200,
+                600,
+                1400,
+                1700,
+                2000
+            ],
             "housecost": 200,
             "group": "darkblue",
             "ownedby": -1,
@@ -487,7 +619,7 @@
             "averageProbability": 2.5545999999999998
         },
         {
-            "name": "Electric Company",
+            "name": "Nhà máy Thủy điện",
             "id": "electriccompany",
             "posistion": 12,
             "price": 150,
@@ -504,7 +636,7 @@
             "averageProbability": 2.609
         },
         {
-            "name": "Water Works",
+            "name": "Hệ thống Thủy lợi",
             "id": "waterworks",
             "posistion": 28,
             "price": 150,
@@ -521,7 +653,7 @@
             "averageProbability": 2.72905
         },
         {
-            "name": "Reading Railroad",
+            "name": "Đường sắt Thống Nhất",
             "id": "readingrailroad",
             "posistion": 5,
             "price": 200,
@@ -539,7 +671,7 @@
             "averageProbability": 2.88205
         },
         {
-            "name": "Pennsylvania Railroad",
+            "name": "Đường mòn Hồ Chí Minh",
             "id": "pennsylvaniarailroad",
             "posistion": 15,
             "price": 200,
@@ -556,7 +688,7 @@
             "averageProbability": 2.7777000000000003
         },
         {
-            "name": "B. & O. Railroad",
+            "name": "Cảng biển Quốc tế",
             "id": "borailroad",
             "posistion": 25,
             "price": 200,
@@ -567,7 +699,7 @@
             "averageProbability": 2.975
         },
         {
-            "name": "Short Line Railroad",
+            "name": "Sân bay Nội Bài",
             "id": "shortlinerailroad",
             "posistion": 35,
             "price": 200,
@@ -578,7 +710,7 @@
             "averageProbability": 2.3609500000000002
         },
         {
-            "name": "Go",
+            "name": "Tổng Khởi Nghĩa",
             "id": "go",
             "posistion": 0,
             "group": "Special",
@@ -591,7 +723,7 @@
             "averageProbability": 3.0052
         },
         {
-            "name": "Income Tax",
+            "name": "Sưu cao thuế nặng",
             "id": "incometax",
             "group": "Special",
             "posistion": 4,
@@ -611,7 +743,7 @@
             "averageProbability": 8.897
         },
         {
-            "name": "Chance",
+            "name": "Tình thế Cách mạng",
             "id": "chance",
             "group": "Special",
             "posistion": 36,
@@ -624,7 +756,7 @@
             "averageProbability": 0.8401000000000001
         },
         {
-            "name": "Chance",
+            "name": "Tình thế Cách mạng",
             "id": "chance",
             "group": "Special",
             "posistion": 7,
@@ -637,7 +769,7 @@
             "averageProbability": 0.8401000000000001
         },
         {
-            "name": "Chance",
+            "name": "Tình thế Cách mạng",
             "id": "chance",
             "group": "Special",
             "posistion": 22,
@@ -650,7 +782,7 @@
             "averageProbability": 0.8401000000000001
         },
         {
-            "name": "Free Parking",
+            "name": "Hội nghị Quốc tế",
             "id": "freeparking",
             "group": "Special",
             "posistion": 20,
@@ -663,7 +795,7 @@
             "averageProbability": 2.85445
         },
         {
-            "name": "Community Chest",
+            "name": "Nghị quyết Đảng",
             "id": "communitychest",
             "group": "Special",
             "posistion": 2,
@@ -676,7 +808,7 @@
             "averageProbability": 1.82995
         },
         {
-            "name": "Community Chest",
+            "name": "Nghị quyết Đảng",
             "id": "communitychest",
             "group": "Special",
             "posistion": 33,
@@ -689,7 +821,7 @@
             "averageProbability": 1.82995
         },
         {
-            "name": "Community Chest",
+            "name": "Nghị quyết Đảng",
             "id": "communitychest",
             "group": "Special",
             "posistion": 17,
@@ -715,7 +847,7 @@
             "averageProbability": 0
         },
         {
-            "name": "Luxury Tax",
+            "name": "Ủng hộ kháng chiến",
             "id": "luxerytax",
             "group": "Special",
             "posistion": 38,
@@ -723,208 +855,169 @@
         }
     ],
     "tiles": [
-        { "id": "go" },
-        { "id": "mediterraneanave" },
-        { "id": "communitychest" },
-        { "id": "balticave" },
-        { "id": "incometax" },
-        { "id": "readingrailroad" },
-        { "id": "orientalave" },
-        { "id": "chance" },
-        { "id": "vermontave" },
-        { "id": "connecticutave" },
-        { "id": "jail" },
-        { "id": "stcharlesplace" },
-        { "id": "electriccompany" },
-        { "id": "statesave" },
-        { "id": "virginiaave" },
-        { "id": "pennsylvaniarailroad" },
-        { "id": "stjamesplace" },
-        { "id": "communitychest" },
-        { "id": "tennesseeave" },
-        { "id": "newyorkave" },
-        { "id": "freeparking" },
-        { "id": "kentuckyave" },
-        { "id": "chance" },
-        { "id": "indianaave" },
-        { "id": "illinoisave" },
-        { "id": "borailroad" },
-        { "id": "atlanticave" },
-        { "id": "ventnorave" },
-        { "id": "waterworks" },
-        { "id": "marvingardens" },
-        { "id": "gotojail" },
-        { "id": "pacificave" },
-        { "id": "northcarolinaave" },
-        { "id": "communitychest" },
-        { "id": "pennsylvaniaave" },
-        { "id": "shortlinerailroad" },
-        { "id": "chance" },
-        { "id": "parkplace" },
-        { "id": "luxerytax" },
-        { "id": "boardwalk" }
+        {
+            "id": "go"
+        },
+        {
+            "id": "mediterraneanave"
+        },
+        {
+            "id": "communitychest"
+        },
+        {
+            "id": "balticave"
+        },
+        {
+            "id": "incometax"
+        },
+        {
+            "id": "readingrailroad"
+        },
+        {
+            "id": "orientalave"
+        },
+        {
+            "id": "chance"
+        },
+        {
+            "id": "vermontave"
+        },
+        {
+            "id": "connecticutave"
+        },
+        {
+            "id": "jail"
+        },
+        {
+            "id": "stcharlesplace"
+        },
+        {
+            "id": "electriccompany"
+        },
+        {
+            "id": "statesave"
+        },
+        {
+            "id": "virginiaave"
+        },
+        {
+            "id": "pennsylvaniarailroad"
+        },
+        {
+            "id": "stjamesplace"
+        },
+        {
+            "id": "communitychest"
+        },
+        {
+            "id": "tennesseeave"
+        },
+        {
+            "id": "newyorkave"
+        },
+        {
+            "id": "freeparking"
+        },
+        {
+            "id": "kentuckyave"
+        },
+        {
+            "id": "chance"
+        },
+        {
+            "id": "indianaave"
+        },
+        {
+            "id": "illinoisave"
+        },
+        {
+            "id": "borailroad"
+        },
+        {
+            "id": "atlanticave"
+        },
+        {
+            "id": "ventnorave"
+        },
+        {
+            "id": "waterworks"
+        },
+        {
+            "id": "marvingardens"
+        },
+        {
+            "id": "gotojail"
+        },
+        {
+            "id": "pacificave"
+        },
+        {
+            "id": "northcarolinaave"
+        },
+        {
+            "id": "communitychest"
+        },
+        {
+            "id": "pennsylvaniaave"
+        },
+        {
+            "id": "shortlinerailroad"
+        },
+        {
+            "id": "chance"
+        },
+        {
+            "id": "parkplace"
+        },
+        {
+            "id": "luxerytax"
+        },
+        {
+            "id": "boardwalk"
+        }
     ],
     "chance": [
         {
-            "title": "Advance to Go (Collect $200)",
-            "action": "move",
-            "tileid": "go"
-        },
-        {
-            "title": "Advance to Illinois Avenue - If you pass Go, collect $200",
-            "action": "move",
-            "tileid": "illinoisave"
-        },
-        {
-            "title": "Advance to St. Charles Place - If you pass Go, collect $200",
-            "action": "move",
-            "tileid": "stcharlesplace"
-        },
-        {
-            "title": "Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.",
-            "action": "movenearest",
-            "groupid": "utility",
-            "rentmultiplier": 10
-        },
-        {
-            "title": "Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank.",
-            "action": "movenearest",
-            "groupid": "railroad",
-            "rentmultiplier": 2
-        },
-        {
-            "title": "Bank pays you dividend of $50",
-            "action": "addfunds",
-            "amount": 50
-        },
-        {
-            "title": "Get out of Jail Free - This card may be kept until needed, or traded/sold",
-            "action": "jail",
-            "subaction": "getout"
-        },
-        {
-            "title": "Go Back 3 Spaces",
-            "action": "move",
-            "count": -3
-        },
-        {
-            "title": "Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200",
-            "action": "jail",
-            "subaction": "goto"
-        },
-        {
-            "title": "Make general repairs on all your property - For each house pay $25 - For each hotel $100",
-            "action": "propertycharges",
-            "buildings": 25,
-            "hotels": 100
-        },
-        {
-            "title": "Pay poor tax of $15",
+            "title": "Khủng hoảng kinh tế thế giới. Mất 50 điểm.",
             "action": "removefunds",
-            "amount": 15
-        },
-        {
-            "title": "Take a trip to Reading Railroad - If you pass Go, collect $200",
-            "action": "move",
-            "tileid": "readingrailroad"
-        },
-        {
-            "title": "Take a walk on the Boardwalk - Advance token to Boardwalk",
-            "action": "move",
-            "tileid": "boardwalk"
-        },
-        {
-            "title": "You have been elected Chairman of the Board - Pay each player $50",
-            "action": "removefundstoplayers",
             "amount": 50
         },
         {
-            "title": "Your building loan matures - Collect $150",
+            "title": "Nạn đói năm 45. Cứu tế 20 điểm cho mỗi người chơi khác.",
+            "action": "removefundstoplayers",
+            "amount": 20
+        },
+        {
+            "title": "Được Quốc tế Cộng sản viện trợ. Nhận 100 điểm.",
+            "action": "addfunds",
+            "amount": 100
+        },
+        {
+            "title": "Giá lúa gạo tăng vọt. Nhận 50 điểm từ kho bạc.",
             "action": "addfunds",
             "amount": 50
         }
     ],
     "communitychest": [
         {
-            "title": "Advance to Go (Collect $200)",
-            "action": "move",
-            "tileid": "go"
-        },
-        {
-            "title": "Bank error in your favor - Collect $200 ",
-            "action": "addfunds",
-            "amount": 200
-        },
-        {
-            "title": "Doctor fee - Pay $50",
-            "action": "removefunds",
-            "amount": 50
-        },
-        {
-            "title": "From sale of stock you get $50",
-            "action": "addfunds",
-            "amount": 50
-        },
-        {
-            "title": "Get Out of Jail Free",
-            "action": "jail",
-            "subaction": "getout"
-        },
-        {
-            "title": "Go to Jail - Go directly to jail - Do not pass Go - Do not collect $200",
-            "action": "jail",
-            "subaction": "goto"
-        },
-        {
-            "title": "Grand Opera Night - Collect $50 from every player for opening night seats",
-            "action": "addfundsfromplayers",
-            "amount": 50
-        },
-        {
-            "title": "Holiday Fund matures - Receive $100",
+            "title": "Phát động Tuần lễ Vàng. Nhận 100 điểm.",
             "action": "addfunds",
             "amount": 100
         },
         {
-            "title": "Income tax refund - Collect $20",
+            "title": "Cải cách ruộng đất. Chia lại tài sản (Lấy 10 điểm từ mỗi người chơi).",
+            "action": "addfundsfromplayers",
+            "amount": 10
+        },
+        {
+            "title": "Khen thưởng chiến sĩ thi đua. Nhận 20 điểm.",
             "action": "addfunds",
             "amount": 20
         },
         {
-            "title": "Life insurance matures - Collect $100",
-            "action": "addfunds",
-            "amount": 100
-        },
-        {
-            "title": "Pay hospital fees of $100",
+            "title": "Đóng đảng phí. Trả 50 điểm.",
             "action": "removefunds",
-            "amount": 100
-        },
-        {
-            "title": "Pay school fees of $150",
-            "action": "removefunds",
-            "amount": 150
-        },
-        {
-            "title": "Receive $25 consultancy fee",
-            "action": "addfunds",
-            "amount": 25
-        },
-        {
-            "title": "You are assessed for street repairs - $40 per house - $115 per hotel",
-            "action": "propertycharges",
-            "buildings": 40,
-            "hotels": 115
-        },
-        {
-            "title": "You have won second prize in a beauty contest - Collect $10",
-            "action": "addfunds",
-            "amount": 10
-        },
-        {
-            "title": "You inherit $100",
-            "action": "addfunds",
-            "amount": 100
+            "amount": 50
         }
     ]
 }

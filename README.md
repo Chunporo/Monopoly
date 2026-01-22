@@ -30,30 +30,6 @@ export default {
 };
 ```
 
-## Credits
-
-credit for danielstern for the monopoly.json file which i modified
-https://github.com/danielstern/science/blob/master/monopoly.json
-
-### Pascol Credits
-
-Main Theme : https://youtu.be/NaH_BiPeZ80
-
-#### Sound Effects:
-
--   Rolling Dice: https://youtu.be/rVjCSaXhZTs
--   Buying: https://youtu.be/IVjC5fTeubA
--   Dying: https://youtu.be/_asNhzXq72w
--   Winning: https://youtu.be/K0ZNtpTYKpI
--   Notification: https://youtu.be/84frnbTWGis
--   Walking: https://youtu.be/7skwR49UhqA
--   Jail: https://youtu.be/h2CTMrzxe24
--   Money: https://www.epidemicsound.com/track/oKEES3Rkmk/
--   Swipe: https://youtu.be/4-lY0NT-bJs
--   Clicking: https://youtu.be/3c-yEJYQcgM
-
-Soundtrakcs Where edited using Adobe Audition
-
 ## Legal Disclaimer
 
 As the developer of this Monopoly game project, it is essential to clarify the following legal aspects:
@@ -87,7 +63,7 @@ As the developer of this Monopoly game project, it is essential to clarify the f
 
 ## Pictures and Videos of the game!
 
-for more pictures https://itaylayzer.github.io/Monopoly/gallery
+for more pictures ./gallery
 ![picture of the monopoly game](https://cdn.discordapp.com/attachments/1005211638191890532/1133681326793433138/7.PNG)
 
 ## Features

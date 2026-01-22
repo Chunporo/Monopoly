@@ -73,59 +73,59 @@ function StreetCard({ args }: { args: StreetDisplayInfo }) {
     return (
         <div className="street-card">
             <div style={{ backgroundColor: _color }}>
-                <p>title dreed</p>
+                <p>BẰNG KHOÁN</p>
                 <h3>{args.title}</h3>
             </div>
             <div>
                 <ol>
                     <li>
-                        <p>Rent</p>
-                        <p>{args.rent}M</p>
+                        <p>Đóng góp</p>
+                        <p>{args.rent} GTTD</p>
                     </li>
                     <li>
-                        <p>Rent with color set</p>
-                        <p>{args.rentWithColorSet}M</p>
+                        <p>Đóng góp cả bộ</p>
+                        <p>{args.rentWithColorSet} GTTD</p>
                     </li>
                     <li>
-                        <p>Rent with 1 house</p>
-                        <p>{args.multpliedrent[0]}M</p>
+                        <p>Đóng góp với 1 nhà</p>
+                        <p>{args.multpliedrent[0]} GTTD</p>
                     </li>
                     <li>
-                        <p>Rent with 2 houses</p>
-                        <p>{args.multpliedrent[1]}M</p>
+                        <p>Đóng góp với 2 nhà</p>
+                        <p>{args.multpliedrent[1]} GTTD</p>
                     </li>
                     <li>
-                        <p>Rent with 3 houses</p>
-                        <p>{args.multpliedrent[2]}M</p>
+                        <p>Đóng góp với 3 nhà</p>
+                        <p>{args.multpliedrent[2]} GTTD</p>
                     </li>
                     <li>
-                        <p>Rent with 4 houses</p>
-                        <p>{args.multpliedrent[3]}M</p>
+                        <p>Đóng góp với 4 nhà</p>
+                        <p>{args.multpliedrent[3]} GTTD</p>
                     </li>
                     <li>
-                        <p>Rent with hotel</p>
-                        <p>{args.multpliedrent[4]}M</p>
+                        <p>Đóng góp với khách sạn</p>
+                        <p>{args.multpliedrent[4]} GTTD</p>
                     </li>
                 </ol>
                 <hr />
                 <ol>
                     <li>
-                        <p>House cost</p>
-                        <p>{args.housesCost}M each</p>
+                        <p>Giá xây dựng</p>
+                        <p>{args.housesCost} GTTD /cái</p>
                     </li>
                     <li>
-                        <p>Hotels cost</p>
+                        <p>Giá nâng cấp</p>
                         <label>
-                            {args.hotelsCost}M each
+                            {args.hotelsCost} GTTD /cái
                             <br />
-                            <p style={{ fontSize: 12 }}>(plus 4 houses)</p>
+                            <p style={{ fontSize: 12 }}>(cộng 4 nhà)</p>
                         </label>
                     </li>
                 </ol>
 
                 <br />
                 <hr />
-                <h4>{args.cardCost}M</h4>
+                <h4>{args.cardCost} GTTD</h4>
             </div>
         </div>
     );
@@ -145,26 +145,26 @@ function RailroadCard({ args }: { args: RailroadDisplayInfo }) {
             <div>
                 <ol>
                     <li>
-                        <p>Rent</p>
-                        <p>{25}M</p>
+                        <p>Đóng góp</p>
+                        <p>{25} GTTD</p>
                     </li>
                     <li>
-                        <p>If 2 stations are owned</p>
-                        <p>{50}M</p>
+                        <p>Nếu sở hữu 2 nhà ga</p>
+                        <p>{50} GTTD</p>
                     </li>
                     <li>
-                        <p>If 3 stations are owned</p>
-                        <p>{100}M</p>
+                        <p>Nếu sở hữu 3 nhà ga</p>
+                        <p>{100} GTTD</p>
                     </li>
                     <li>
-                        <p>If 4 stations are owned</p>
-                        <p>{200}M</p>
+                        <p>Nếu sở hữu 4 nhà ga</p>
+                        <p>{200} GTTD</p>
                     </li>
                 </ol>
-                <h4>mortgage Value 100M</h4>
+                <h4>Giá trị thế chấp 100 GTTD</h4>
                 <hr />
                 <br />
-                <h4>{args.cardCost}M</h4>
+                <h4>{args.cardCost} GTTD</h4>
             </div>
         </div>
     );
@@ -189,16 +189,14 @@ function UtilityCard({ args }: { args: UtilitiesDisplayInfo }) {
             </div>
             <div>
                 <p style={{ lineHeight: 1, paddingInline: 10 }}>
-                    If one Utility is owned, rent is 4 times amount shown on
-                    dice.
+                    Nếu sở hữu 1 Công ty, đóng góp gấp 4 lần số xúc xắc.
                     <br />
                     <br />
-                    If both Utilities are owned, rent is 10 times amount shown
-                    on dice
+                    Nếu sở hữu cả 2 Công ty, đóng góp gấp 10 lần số xúc xắc.
                 </p>
                 <hr />
                 <br />
-                <h4>{args.cardCost}M</h4>
+                <h4>{args.cardCost} GTTD</h4>
             </div>
         </div>
     );

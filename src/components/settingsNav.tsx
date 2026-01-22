@@ -71,10 +71,10 @@ export default function settingsNav() {
     ]);
     return (
         <>
-            <h3 style={{ textAlign: "center" }}>Settings</h3>
+            <h3 style={{ textAlign: "center" }}>Cài đặt</h3>
             <div className="scroll">
                 <div className="settingsItem">
-                    <p>Game Engine </p>
+                    <p>Đồ họa </p>
                     <div>
                         <select name="" id="">
                             <option>2D</option>
@@ -90,14 +90,14 @@ export default function settingsNav() {
                         opacity: 0.5,
                     }}
                 >
-                    3d isnt developed yet{" "}
+                    3D chưa được phát triển{" "}
                 </p>
                 <br />
                 <hr />
-                <h2>Accessibility</h2>
+                <h2>Trợ năng</h2>
                 <div>
                     <div className="settingsItem">
-                        <p>Rotation Speed </p>
+                        <p>Tốc độ xoay </p>
 
                         <Slider
                             step={90 / 8}
@@ -110,11 +110,11 @@ export default function settingsNav() {
                                 );
                             }}
                             fixedNum={2}
-                            suffix=" deg"
+                            suffix=" độ"
                         />
                     </div>
                     <div className="settingsItem">
-                        <p>Scale Speed </p>
+                        <p>Tốc độ phóng to </p>
                         <Slider
                             step={1}
                             min={1}
@@ -129,7 +129,7 @@ export default function settingsNav() {
                         />
                     </div>
                     <div className="settingsItem">
-                        <p>Show Users Id </p>
+                        <p>Hiện ID người chơi </p>
                         <div>
                             <input
                                 defaultChecked={l.booleans[0][0]}
@@ -141,7 +141,7 @@ export default function settingsNav() {
                         </div>
                     </div>
                     <div className="settingsItem">
-                        <p>Show Users Mouse </p>
+                        <p>Hiện chuột người chơi </p>
                         <div>
                             <input
                                 defaultChecked={l.booleans[1][0]}
@@ -153,7 +153,7 @@ export default function settingsNav() {
                         </div>
                     </div>
                     <div className="settingsItem">
-                        <p>Add Colors to Users </p>
+                        <p>Tô màu người chơi </p>
                         <div>
                             <input
                                 defaultChecked={l.booleans[2][0]}
@@ -167,10 +167,10 @@ export default function settingsNav() {
                     <br />
                     <hr />
                 </div>
-                <h2>Audio</h2>
+                <h2>Âm thanh</h2>
                 <div>
                     <div className="settingsItem">
-                        <p>Master Audio </p>
+                        <p>Âm lượng tổng </p>
                         <Slider
                             step={1}
                             min={0}
@@ -186,7 +186,7 @@ export default function settingsNav() {
                         />
                     </div>
                     <div className="settingsItem">
-                        <p>SFX Audio </p>
+                        <p>Âm lượng hiệu ứng </p>
                         <Slider
                             step={1}
                             min={0}
@@ -202,7 +202,7 @@ export default function settingsNav() {
                         />
                     </div>
                     <div className="settingsItem">
-                        <p>Music Audio </p>
+                        <p>Âm lượng nhạc nền </p>
                         <Slider
                             step={1}
                             min={0}
@@ -220,10 +220,10 @@ export default function settingsNav() {
                     <br />
                     <hr />
                 </div>
-                <h2>Notifications</h2>
+                <h2>Thông báo</h2>
                 <div>
                     <div className="settingsItem">
-                        <p>Notify Balance Movements </p>
+                        <p>Thông báo biến động số dư </p>
                         <div>
                             <input
                                 defaultChecked={l.booleans[3][0]}

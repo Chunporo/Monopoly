@@ -4,10 +4,16 @@ import { BrowserRouter as Router, Route, Routes, RouterProvider, createBrowserRo
 import Gallery from "./Pages/Galery/gallery.tsx";
 import Home from "./Pages/Home/home.tsx";
 import Users from "./Pages/Users/users.tsx";
+import { GameProvider } from "./services/GameContext.tsx";
+
 const router = createBrowserRouter([
     {
         path: "Monopoly",
-        element: <Home />,
+        element: (
+            <GameProvider defaultBackend="firebase">
+                <Home />
+            </GameProvider>
+        ),
     },
     {
         path: "Monopoly/gallery",

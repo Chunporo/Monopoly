@@ -22,22 +22,22 @@ export default function JoinScreen(props: {
         <>
             <nav className="join">
                 <button
-                    data-tooltip-hover={"online"}
+                    data-tooltip-hover={"trực tuyến"}
                     data-select={tabIndex === 0}
                     onClick={() => {
                         SetTab(0);
                     }}
                 >
-                    <img src="online.png" alt="" />
+                    <img src="icon_online.svg" alt="" />
                 </button>
                 <button
-                    data-tooltip-hover={"computer"}
+                    data-tooltip-hover={"máy"}
                     data-select={tabIndex === 1}
                     onClick={() => {
                         SetTab(1);
                     }}
                 >
-                    <img src="bot.png" alt="" />
+                    <img src="icon_bot.svg" alt="" />
                 </button>
             </nav>
             <br></br>
@@ -45,7 +45,7 @@ export default function JoinScreen(props: {
             {tabIndex === 1 ? (
                 <>
                     <div key={"bots-name"}>
-                        <p>please enter your name:</p>
+                        <p>Vui lòng nhập tên của bạn:</p>
                         {props.fbUser === undefined ? (
                             <input
                                 type="text"
@@ -54,13 +54,13 @@ export default function JoinScreen(props: {
                                     props.SetName(e.currentTarget.value);
                                 }}
                                 defaultValue={props.name}
-                                placeholder="enter name"
+                                placeholder="nhập tên"
                             />
                         ) : (
-                            <input type="text" id="name" disabled={true} value={props.fbUser.name} placeholder="enter name" />
+                            <input type="text" id="name" disabled={true} value={props.fbUser.name} placeholder="nhập tên" />
                         )}
                     </div>
-                    <p>bots settings:</p>
+                    <p>Cài đặt máy:</p>
                     <BotsList
                         OnChange={(arr: botInitial[]) => {
                             SetBotList(arr);
@@ -74,25 +74,25 @@ export default function JoinScreen(props: {
                             }}
                             disabled={props.disabled}
                         >
-                            start
+                            Bắt đầu
                         </button>
                     </center>
                 </>
             ) : (
                 <>
                     <div key={"online-code"}>
-                        <p>please enter your code:</p>
+                        <p>Vui lòng nhập mã phòng:</p>
                         <input
                             type="text"
                             id="name"
                             onChange={(e) => props.SetAddress(e.currentTarget.value)}
                             defaultValue={props.addr}
-                            placeholder="enter code"
+                            placeholder="nhập mã"
                         />
                     </div>
 
                     <div key={"online-name"}>
-                        <p>please enter your name:</p>
+                        <p>Vui lòng nhập tên của bạn:</p>
                         {props.fbUser === undefined ? (
                             <input
                                 type="text"
@@ -101,10 +101,10 @@ export default function JoinScreen(props: {
                                     props.SetName(e.currentTarget.value);
                                 }}
                                 defaultValue={props.name}
-                                placeholder="enter name"
+                                placeholder="nhập tên"
                             />
                         ) : (
-                            <input type="text" id="name" disabled={true} value={props.name} placeholder="enter name" />
+                            <input type="text" id="name" disabled={true} value={props.name} placeholder="nhập tên" />
                         )}
                     </div>
 
@@ -115,7 +115,7 @@ export default function JoinScreen(props: {
                             }}
                             disabled={props.disabled}
                         >
-                            join
+                            Tham gia
                         </button>
                     </center>
                 </>

@@ -1,14 +1,14 @@
-import PlayersIcon from "../../../public/players.png";
-import ChatIcon from "../../../public/chat.png";
-import NChatIcon from "../../../public/chat_new.png";
-import LeaveIcon from "../../../public/leave1.png";
-import PropretiesIcon from "../../../public/proprety.png";
-import SettingsIcon from "../../../public/settings.png";
-import MonopolyIcon from "../../../public/icon.png";
+import PlayersIcon from "../../../public/icon_players.svg";
+import ChatIcon from "../../../public/icon_chat.svg";
+import NChatIcon from "../../../public/icon_chat.svg";
+import LeaveIcon from "../../../public/icon_leave.svg";
+import PropretiesIcon from "../../../public/icon_property.svg";
+import SettingsIcon from "../../../public/icon_settings.svg";
+import MonopolyIcon from "../../../public/icon_app.svg";
 
 import { forwardRef, useState, useImperativeHandle, useEffect, useRef } from "react";
 import { Player } from "../../assets/player.ts";
-import { Server, Socket } from "../../assets/sockets.ts";
+import { Server, Socket, ISocket } from "../../assets/sockets.ts";
 import PropretyTab, { PropretyTabRef } from "./propretyTab.tsx";
 import PlayersTab, { PlayersTabRef } from "./playersTab.tsx";
 import SettingsNav from "../settingsNav.tsx";
@@ -16,7 +16,7 @@ import { MonopolyMode, historyAction } from "../../assets/types.ts";
 
 interface MonopolyNavProps {
     name: string;
-    socket: Socket;
+    socket: ISocket;
     players: Array<Player>;
     currentTurn: string;
     server: Server | undefined;
@@ -139,7 +139,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                         key={"ingame-nav-header-0"}
                         data-selected={tabIndex == 0}
                         onClick={() => SetTab(0)}
-                        data-tooltip-hover="players"
+                        data-tooltip-hover="người chơi"
                         className="button"
                     >
                         <img src={PlayersIcon.replace("public/", "")} alt="" />
@@ -149,7 +149,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                         key={"ingame-nav-header-1"}
                         data-selected={tabIndex == 1}
                         onClick={() => SetTab(1)}
-                        data-tooltip-hover="propreties"
+                        data-tooltip-hover="tài sản"
                         className="button"
                     >
                         <img src={PropretiesIcon.replace("public/", "")} alt="" />
@@ -159,7 +159,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                         key={"ingame-nav-header-2"}
                         data-selected={tabIndex == 2}
                         onClick={() => SetTab(2)}
-                        data-tooltip-hover="chat"
+                        data-tooltip-hover="trò chuyện"
                         className="button"
                         id="chatIconChange"
                     >
@@ -171,10 +171,10 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                         onClick={() => {
                             SetTab(3);
                         }}
-                        data-tooltip-hover="history"
+                        data-tooltip-hover="lịch sử"
                         className="button"
                     >
-                        <img src="history.png" alt="" />
+                        <img src="icon_history.svg" alt="" />
                     </div>
                 </div>
                 <div className="lower">
@@ -183,10 +183,10 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                             key={"ingame-nav-header-server"}
                             data-selected={false}
                             onClick={() => prop.callServer()}
-                            data-tooltip-hover="server"
+                            data-tooltip-hover="máy chủ"
                             className="button"
                         >
-                            <img src="server.png" alt="" />
+                            <img src="icon_server.svg" alt="" />
                         </div>
                     ) : (
                         <></>
@@ -195,7 +195,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                         key={"ingame-nav-header-4"}
                         data-selected={tabIndex == 4}
                         onClick={() => SetTab(4)}
-                        data-tooltip-hover="monopolySettings"
+                        data-tooltip-hover="cài đặt"
                         className="button"
                     >
                         <img src={SettingsIcon.replace("public/", "")} alt="" />
@@ -204,7 +204,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                         key={"ingame-nav-header-7"}
                         data-tooltip="leave"
                         className="button color"
-                        data-tooltip-hover="leave"
+                        data-tooltip-hover="rời phòng"
                         onClick={() => {
                             document.location.reload();
                         }}
@@ -225,7 +225,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                     />
                 ) : tabIndex == 2 ? (
                     <>
-                        <h3 style={{ textAlign: "center" }}>Chat</h3>
+                        <h3 style={{ textAlign: "center" }}>Trò chuyện</h3>
                         <div className="main-chat">
                             <div className="messages">
                                 {messages.map((v, i) => (
@@ -236,7 +236,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                                 ))}
                             </div>
                             <input
-                                placeholder="Type Message Here..."
+                                placeholder="Nhập tin nhắn..."
                                 type="text"
                                 onKeyDown={(e) => {
                                     if (e.which === 13 && e.currentTarget.value.length > 0) {
@@ -253,7 +253,7 @@ const MonopolyNav = forwardRef<MonopolyNavRef, MonopolyNavProps>((prop, ref) => 
                 ) : tabIndex == 3 ? (
                     <>
                         <h3 style={{ textAlign: "center" }}>
-                            History <h2>{calculateTimeDifference(prop.time, currentTime)}</h2>
+                            Lịch sử <h2>{calculateTimeDifference(prop.time, currentTime)}</h2>
                         </h3>
 
                         <div style={{ overflowY: "auto", display: "block", position: "relative" }}>

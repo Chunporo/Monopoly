@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Server, Socket } from "../../assets/sockets.ts";
+import { Server, Socket, ISocket } from "../../assets/sockets.ts";
 import { Player, PlayerJSON } from "../../assets/player.ts";
 import "../../monopoly.css";
 import MonopolyNav, { MonopolyNavRef } from "../../components/ingame/nav.tsx";
@@ -8,7 +8,7 @@ import NotifyElement, { NotificatorRef } from "../../components/notificator.tsx"
 import monopolyJSON from "../../assets/monopoly.json";
 import { MonopolySettings, MonopolyModes, historyAction, history, GameTrading, MonopolyMode } from "../../assets/types.ts";
 import { CookieManager } from "../../assets/cookieManager.ts";
-function App({ socket, name, server }: { socket: Socket; name: string; server: Server | undefined }) {
+function App({ socket, name, server }: { socket: ISocket; name: string; server: Server | undefined }) {
     const [clients, SetClients] = useState<Map<string, Player>>(new Map());
     const players = Array.from(clients.values());
 
@@ -40,8 +40,8 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
 
     useEffect(() => {
         const settings_interval = setInterval(() => {
-            const parsedCookie = JSON.parse(decodeURIComponent(CookieManager.get("monopolySettings") as string))["monopolySettings"];
-            SetSettings(parsedCookie);
+            const parsedCookie = JSON.parse(decodeURIComponent(CookieManager.get("monopolySettings") as string));
+            SetSettings(parsedCookie.settings);
         }, 1000);
         return () => {
             clearInterval(settings_interval);
@@ -78,7 +78,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
         let settings: MonopolySettings | undefined = undefined;
 
         const settings_interval = setInterval(() => {
-            settings = JSON.parse(decodeURIComponent(CookieManager.get("monopolySettings") as string))["monopolySettings"];
+            settings = JSON.parse(decodeURIComponent(CookieManager.get("monopolySettings") as string)).settings;
         }, 1000);
 
         function mouseMove(e: MouseEvent) {
@@ -485,7 +485,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
             SetHistories((old) => [
                 ...old,
                 history(
-                    `${clients.get(args.turnId)?.username ?? "unknown player"} rolled [${args.listOfNums[0]}, ${args.listOfNums[1]}] moving to "${
+                    `${clients.get(args.turnId)?.username ?? "người chơi ẩn danh"} rolled [${args.listOfNums[0]}, ${args.listOfNums[1]}] moving to "${
                         propretyMap.get(args.listOfNums[2])?.name ?? ""
                     }"`
                 ),
@@ -500,7 +500,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
             const dice_generatorResults = playerMoveGENERATOR(args.listOfNums[2], xplayer, true, () => {
                 if (args.turnId != socket.id && args.listOfNums[2] === 30) {
                     setTimeout(() => {
-                        SetHistories((old) => [...old, history(`${clients.get(args.turnId)?.username ?? "unknown player"} goes to jail`)]);
+                        SetHistories((old) => [...old, history(`${clients.get(args.turnId)?.username ?? "người chơi ẩn danh"} vào tù`)]);
                         const generatorResults = playerMoveGENERATOR(10, xplayer, false, () => {
                             xplayer.position = 10;
                             xplayer.isInJail = true;
@@ -535,7 +535,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                     if (b === "buy") {
                                         if (settings !== undefined && settings.notifications === true)
                                             notifyRef.current?.message(
-                                                `${(proprety?.price ?? 0) * 1} of money is deducted from the account`,
+                                                `${(proprety?.price ?? 0) * 1} Điểm đã bị trừ khỏi tài khoản`,
                                                 "info",
                                                 2,
                                                 () => {},
@@ -555,7 +555,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
 
                                         socket.emit(
                                             "history",
-                                            history(`${clients.get(socket.id)?.username ?? "unknown player"} bought ${proprety.name}`)
+                                            history(`${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} đã mua ${proprety.name}`)
                                         );
                                     } else if (b === "advance-buy") {
                                         var audio = new Audio("./buying1.mp3");
@@ -576,7 +576,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                         if (_info.state === 5) {
                                             if (settings !== undefined && settings.notifications === true)
                                                 notifyRef.current?.message(
-                                                    `${proprety.ohousecost ?? 0} of money is deducted from the account`,
+                                                    `${proprety.ohousecost ?? 0} Điểm đã bị trừ khỏi tài khoản`,
                                                     "info",
                                                     2,
                                                     () => {},
@@ -587,7 +587,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                         } else {
                                             if (settings !== undefined && settings.notifications === true)
                                                 notifyRef.current?.message(
-                                                    `${proprety.housecost ?? 0} of money is deducted from the account`,
+                                                    `${proprety.housecost ?? 0} Điểm đã bị trừ khỏi tài khoản`,
                                                     "info",
                                                     2,
                                                     () => {},
@@ -599,7 +599,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
 
                                         socket.emit(
                                             "history",
-                                            history(`${clients.get(socket.id)?.username ?? "unknown player"} advanced ${proprety.name}`)
+                                            history(`${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} đã nâng cấp ${proprety.name}`)
                                         );
                                     } else if (b === "someones") {
                                         const players = Array.from(clients.values());
@@ -628,7 +628,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                     }
                                                     if (settings !== undefined && settings.notifications === true)
                                                         notifyRef.current?.message(
-                                                            `${payment_ammount} of money is deducted from the account`,
+                                                            `${payment_ammount} Điểm đã bị trừ khỏi tài khoản`,
                                                             "info",
                                                             2,
                                                             () => {},
@@ -675,7 +675,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                             localPlayer.balance -= 200;
                                             if (settings !== undefined && settings.notifications === true)
                                                 notifyRef.current?.message(
-                                                    `${200} of money is deducted from the account`,
+                                                    `${200} Điểm đã bị trừ khỏi tài khoản`,
                                                     "info",
                                                     2,
                                                     () => {},
@@ -688,14 +688,14 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                             engineRef.current?.applyAnimation(1);
                                             socket.emit(
                                                 "history",
-                                                history(`${clients.get(socket.id)?.username ?? "unknown player"} payed income taxes`)
+                                                history(`${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} payed income taxes`)
                                             );
                                         }
                                         if (proprety?.id === "luxerytax") {
                                             localPlayer.balance -= 100;
                                             if (settings !== undefined && settings.notifications === true)
                                                 notifyRef.current?.message(
-                                                    `${100} of money is deducted from the account`,
+                                                    `${100} Điểm đã bị trừ khỏi tài khoản`,
                                                     "info",
                                                     2,
                                                     () => {},
@@ -708,13 +708,13 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                             engineRef.current?.applyAnimation(1);
                                             socket.emit(
                                                 "history",
-                                                history(`${clients.get(socket.id)?.username ?? "unknown player"} payed luxery taxes`)
+                                                history(`${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} payed luxery taxes`)
                                             );
                                         }
                                     } else if (b === "special_action") {
                                         if (settings !== undefined && settings.notifications === true)
                                             notifyRef.current?.message(
-                                                `${(proprety?.price ?? 0) * 1} of money is deducted from the account`,
+                                                `${(proprety?.price ?? 0) * 1} Điểm đã bị trừ khỏi tài khoản`,
                                                 "info",
                                                 2,
                                                 () => {},
@@ -742,7 +742,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                         socket.emit(
                                             "history",
                                             history(
-                                                `${clients.get(socket.id)?.username ?? "unknown player"} bought ${
+                                                `${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} bought ${
                                                     prp?.name ?? "unkown place"
                                                 } with rent of ${calculateRent}`
                                             )
@@ -791,7 +791,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                 } else {
                     x.balance -= 50;
                     if (x.id === socket.id && settings !== undefined && settings.notifications === true)
-                        notifyRef.current?.message(`${50} of money is deducted from the account`, "info", 2, () => {}, false);
+                        notifyRef.current?.message(`${50} Điểm đã bị trừ khỏi tài khoản`, "info", 2, () => {}, false);
                     var audio = new Audio("./moneyminus.mp3");
                     audio.volume = ((settings?.audio[1] ?? 100) / 100) * ((settings?.audio[0] ?? 100) / 100);
                     audio.loop = false;
@@ -838,7 +838,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
             SetHistories((old) => [
                 ...old,
                 history(
-                    `${clients.get(args.turnId)?.username ?? "unknown player"} got ${
+                    `${clients.get(args.turnId)?.username ?? "người chơi ẩn danh"} got ${
                         args.is_chance ? "chance" : "community chest "
                     } card that said "${args.element.title}"`
                 ),
@@ -982,7 +982,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                         if (xplayer.id === socket.id) {
                             engineRef.current?.applyAnimation(1);
                             if (settings !== undefined && settings.notifications === true)
-                                notifyRef.current?.message(`${c.amount ?? 0} of money is deducted from the account`, "info", 2, () => {}, false);
+                                notifyRef.current?.message(`${c.amount ?? 0} Điểm đã bị trừ khỏi tài khoản`, "info", 2, () => {}, false);
                             var audio = new Audio("./moneyminus.mp3");
                             audio.volume = ((settings?.audio[1] ?? 100) / 100) * ((settings?.audio[0] ?? 100) / 100);
                             audio.loop = false;
@@ -1045,7 +1045,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                             if (b === "buy") {
                                                 if (settings !== undefined && settings.notifications === true)
                                                     notifyRef.current?.message(
-                                                        `${(proprety?.price ?? 0) * 1} of money is deducted from the account`,
+                                                        `${(proprety?.price ?? 0) * 1} Điểm đã bị trừ khỏi tài khoản`,
                                                         "info",
                                                         2,
                                                         () => {},
@@ -1074,7 +1074,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                 socket.emit(
                                                     "history",
                                                     history(
-                                                        `${clients.get(socket.id)?.username ?? "unknown player"} bought ${
+                                                        `${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} bought ${
                                                             prp?.name ?? "unkown place"
                                                         }`
                                                     )
@@ -1083,7 +1083,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                 console.log(info);
                                                 if (settings !== undefined && settings.notifications === true)
                                                     notifyRef.current?.message(
-                                                        `${(proprety?.price ?? 0) * 1} of money is deducted from the account`,
+                                                        `${(proprety?.price ?? 0) * 1} Điểm đã bị trừ khỏi tài khoản`,
                                                         "info",
                                                         2,
                                                         () => {},
@@ -1117,7 +1117,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                 socket.emit(
                                                     "history",
                                                     history(
-                                                        `${clients.get(socket.id)?.username ?? "unknown player"} bought ${
+                                                        `${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} bought ${
                                                             prp?.name ?? "unkown place"
                                                         } with rent of ${calculateRent}`
                                                     )
@@ -1135,7 +1135,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                                 socket.emit(
                                                                     "history",
                                                                     history(
-                                                                        `${clients.get(socket.id)?.username ?? "unknown player"} rolled [${l[0]}, ${
+                                                                        `${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} rolled [${l[0]}, ${
                                                                             l[1]
                                                                         }]`
                                                                     )
@@ -1148,7 +1148,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                                         payment_ammount = (l[0] + l[1]) * (c.rentmultiplier ?? 1);
                                                                         if (settings !== undefined && settings.notifications === true)
                                                                             notifyRef.current?.message(
-                                                                                `${payment_ammount} of money is deducted from the account`,
+                                                                                `${payment_ammount} Điểm đã bị trừ khỏi tài khoản`,
                                                                                 "info",
                                                                                 2,
                                                                                 () => {},
@@ -1172,9 +1172,9 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                                             "history",
                                                                             history(
                                                                                 `${
-                                                                                    clients.get(socket.id)?.username ?? "unknown player"
+                                                                                    clients.get(socket.id)?.username ?? "người chơi ẩn danh"
                                                                                 } pay ${payment_ammount} to ${
-                                                                                    clients.get(p.id)?.username ?? "unknown player"
+                                                                                    clients.get(p.id)?.username ?? "người chơi ẩn danh"
                                                                                 }`
                                                                             )
                                                                         );
@@ -1198,7 +1198,7 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
 
                                                                 if (settings !== undefined && settings.notifications === true)
                                                                     notifyRef.current?.message(
-                                                                        `${payment_ammount} of money is deducted from the account`,
+                                                                        `${payment_ammount} Điểm đã bị trừ khỏi tài khoản`,
                                                                         "info",
                                                                         2,
                                                                         () => {},
@@ -1221,9 +1221,9 @@ function App({ socket, name, server }: { socket: Socket; name: string; server: S
                                                                     "history",
                                                                     history(
                                                                         `${
-                                                                            clients.get(socket.id)?.username ?? "unknown player"
+                                                                            clients.get(socket.id)?.username ?? "người chơi ẩn danh"
                                                                         } pay ${payment_ammount} to ${
-                                                                            clients.get(p.id)?.username ?? "unknown player"
+                                                                            clients.get(p.id)?.username ?? "người chơi ẩn danh"
                                                                         }`
                                                                     )
                                                                 );
@@ -1265,7 +1265,7 @@ which is ${payment_ammount}
                         `);
                         if (xplayer.id === socket.id && payment_ammount > 0) {
                             if (settings !== undefined && settings.notifications === true)
-                                notifyRef.current?.message(`${payment_ammount} of money is deducted from the account`, "info", 2, () => {}, false);
+                                notifyRef.current?.message(`${payment_ammount} Điểm đã bị trừ khỏi tài khoản`, "info", 2, () => {}, false);
                             var audio = new Audio("./moneyminus.mp3");
                             audio.volume = ((settings?.audio[1] ?? 100) / 100) * ((settings?.audio[0] ?? 100) / 100);
                             audio.loop = false;
@@ -1418,7 +1418,7 @@ which is ${payment_ammount}
                             if (localPlayer === undefined) return;
                             if (settings !== undefined && settings.notifications === true)
                                 notifyRef.current?.message(
-                                    `${a} of money is deducted from the account for canceling mortgage`,
+                                    `${a} Điểm đã bị trừ khỏi tài khoản for canceling mortgage`,
                                     "info",
                                     2,
                                     () => {},
@@ -1431,7 +1431,7 @@ which is ${payment_ammount}
                             audio.volume = 0.5 * ((settings?.audio[1] ?? 100) / 100) * ((settings?.audio[0] ?? 100) / 100);
                             audio.loop = false;
                             audio.play();
-                            socket.emit("history", history(`${clients.get(socket.id)?.username ?? "unknown player"} cancel mortgage on ${prpName}`));
+                            socket.emit("history", history(`${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} cancel mortgage on ${prpName}`));
                             SetClients(new Map(clients.set(socket.id, localPlayer)));
                         },
                         onMort: (a, prpName) => {
@@ -1441,14 +1441,14 @@ which is ${payment_ammount}
                             const localPlayer = clients.get(socket.id);
                             if (localPlayer === undefined) return;
                             if (settings !== undefined && settings.notifications === true)
-                                notifyRef.current?.message(`${a} of money is deducted from the account for mortgage`, "info", 2, () => {}, false);
+                                notifyRef.current?.message(`${a} Điểm đã bị trừ khỏi tài khoản for mortgage`, "info", 2, () => {}, false);
                             localPlayer.balance -= a;
                             engineRef.current?.applyAnimation(1);
                             var audio = new Audio("./buying1.mp3");
                             audio.volume = 0.5 * ((settings?.audio[1] ?? 100) / 100) * ((settings?.audio[0] ?? 100) / 100);
                             audio.loop = false;
                             audio.play();
-                            socket.emit("history", history(`${clients.get(socket.id)?.username ?? "unknown player"} mortgaged ${prpName}`));
+                            socket.emit("history", history(`${clients.get(socket.id)?.username ?? "người chơi ẩn danh"} mortgaged ${prpName}`));
                             SetClients(new Map(clients.set(socket.id, localPlayer)));
                         },
                     }}
@@ -1519,7 +1519,7 @@ which is ${payment_ammount}
                         root.style.transform = "";
                     }}
                 >
-                    <img src="icon.png" alt="" />
+                    <img src="icon_roll.svg" alt="" />
                 </footer>
             </div>
         </>
@@ -1528,8 +1528,8 @@ which is ${payment_ammount}
             <main>
                 <section>
                     <div>
-                        <h3>Hello there {name}</h3>
-                        the players that are currently in the lobby are
+                        <h3>Xin chào {name}</h3>
+                        Danh sách người chơi trong phòng:
                         <div>
                             {Array.from(clients.values()).map((v, i) => {
                                 return (
@@ -1548,7 +1548,7 @@ which is ${payment_ammount}
                                         SetReady(!imReady);
                                     }}
                                 >
-                                    {!imReady ? "Ready" : "Not Ready"}
+                                    {!imReady ? "Sẵn sàng" : "Chưa sẵn sàng"}
                                 </button>
                             </center>
                         </div>
@@ -1566,7 +1566,7 @@ which is ${payment_ammount}
                                     fontWeight: "100",
                                 }}
                             >
-                                the server-admin is <br /> choosing the gamemode
+                                Chủ phòng đang <br /> chọn chế độ chơi
                             </p>
                         </>
                     ) : (
@@ -1578,30 +1578,30 @@ which is ${payment_ammount}
                             <h3>{selectedMode.Name}</h3>
                             <table>
                                 <tr>
-                                    <td> Winning State:</td> <td>{selectedMode.WinningMode.toUpperCase()}</td>
+                                    <td> Điều kiện thắng:</td> <td>{selectedMode.WinningMode.toUpperCase()}</td>
                                 </tr>
                                 {/* <tr>
                                     <td> Buying System:</td> <td>{selectedMode.BuyingSystem.toUpperCase()}</td>
                                 </tr> */}
                                 <tr>
-                                    <td>Trades: </td>
-                                    <td>{selectedMode.AllowDeals ? "ALLOWED" : "NOT-ALLOWED"}</td>
+                                    <td>Giao dịch: </td>
+                                    <td>{selectedMode.AllowDeals ? "CHO PHÉP" : "KHÔNG CHO PHÉP"}</td>
                                 </tr>
                                 <tr>
-                                    <td>Mortgage: </td>
-                                    <td>{selectedMode.mortageAllowed ? "ALLOWED" : "NOT-ALLOWED"}</td>
+                                    <td>Cầm cố: </td>
+                                    <td>{selectedMode.mortageAllowed ? "CHO PHÉP" : "KHÔNG CHO PHÉP"}</td>
                                 </tr>
                                 <tr>
-                                    <td>Starting Cash: </td>
-                                    <td>{selectedMode.startingCash} M</td>
+                                    <td>Tiền khởi điểm: </td>
+                                    <td>{selectedMode.startingCash} GTTD</td>
                                 </tr>
                                 <tr>
-                                    <td>Turn Timer: </td>
+                                    <td>Thời gian lượt: </td>
                                     <td>
                                         {selectedMode.turnTimer === undefined ||
                                         (typeof selectedMode.turnTimer === "number" && selectedMode.turnTimer === 0)
-                                            ? "No Timer"
-                                            : JSON.stringify(selectedMode.turnTimer) + " Sec"}
+                                            ? "Không giới hạn"
+                                            : JSON.stringify(selectedMode.turnTimer) + " Giây"}
                                     </td>
                                 </tr>
                             </table>
@@ -1628,18 +1628,18 @@ which is ${payment_ammount}
                                 data-select={selectedMode.Name === "Custom Mode"}
                                 data-disabled={server === undefined}
                                 onClick={() => {
-                                    const winstateChoice = window.prompt("Winning State\n1=last-standing\n2=monopols\n3=monopols & trains", "3");
+                                    const winstateChoice = window.prompt("Điều kiện thắng\n1=Người cuối cùng\n2=Đủ bộ màu\n3=Đủ bộ màu & nhà ga", "3");
                                     // const buyingChoice = window.prompt("Buying System State\n1=following-order\n2=card-firsts\n3=everything", "3");
-                                    const allowTrade = window.confirm("Allow Trades");
-                                    const allowMortgage = window.confirm("Allow Mortgage");
-                                    const startingCash = window.prompt("Starting Cash", "1500");
-                                    const turnTimer = window.prompt("Turn Timer", "0");
+                                    const allowTrade = window.confirm("Cho phép giao dịch?");
+                                    const allowMortgage = window.confirm("Cho phép cầm cố?");
+                                    const startingCash = window.prompt("Tiền khởi điểm", "1500");
+                                    const turnTimer = window.prompt("Thời gian lượt (giây)", "0");
                                     const v = {
                                         AllowDeals: allowTrade,
                                         // BuyingSystem: buyingChoice === "2" ? "card-firsts" : buyingChoice === "3" ? "everything" : "following-order",
                                         WinningMode:
                                             winstateChoice === "2" ? "monopols" : winstateChoice === "3" ? "monopols & trains" : "last-standing",
-                                        Name: "Custom Mode",
+                                        Name: "Chế độ Tùy chỉnh",
                                         mortageAllowed: allowMortgage,
                                         startingCash: startingCash === null ? 1500 : parseInt(startingCash) ?? 1500,
                                         turnTimer: turnTimer === null ? undefined : parseInt(turnTimer) ?? undefined,
@@ -1650,7 +1650,7 @@ which is ${payment_ammount}
                                         });
                                 }}
                             >
-                                Custom Mode
+                                Chế độ Tùy chỉnh
                             </p>
                         </div>
                     </div>

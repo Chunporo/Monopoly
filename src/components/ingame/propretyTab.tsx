@@ -1,6 +1,6 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
-import HouseIcon from "../../../public/h.png";
-import HotelIcon from "../../../public/ho.png";
+import HouseIcon from "../../../public/icon_house.svg";
+import HotelIcon from "../../../public/icon_hotel.svg";
 import { translateGroup } from "./streetCard.tsx";
 import CardViewer from "./cardViewer.tsx";
 import monopolyJSON from "../../assets/monopoly.json";
@@ -208,12 +208,12 @@ const propretyTab = forwardRef<PropretyTabRef, PropretyTabProps>((props, ref) =>
                                     <h2>Actions</h2>
                                     {mortgageApi.isMortaged(currentCardPosition) ? (
                                         <button className="railroads-actions" onClick={mortgageApi.buttons.cancel}>
-                                            Cancel Mortgage [Pay 10M]
+                                            Chuộc lại [Trả 10 GTTD]
                                         </button>
                                     ) : (
                                         <button className="railroads-actions" onClick={mortgageApi.buttons.pay}>
                                             {" "}
-                                            Mortgage [Pay 100M]
+                                            Cầm cố [100 GTTD]
                                         </button>
                                     )}
                                 </>

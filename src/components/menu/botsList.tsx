@@ -32,7 +32,7 @@ export default function BotsList(props: { OnChange: (array: botInitial[]) => voi
                         }}
                     />
                     <img
-                        src="trash.png"
+                        src="trasicon_house.svg"
                         alt=""
                         onClick={() => {
                             const b = JSON.parse(JSON.stringify(arr)) as botInitial[];
@@ -58,7 +58,7 @@ export default function BotsList(props: { OnChange: (array: botInitial[]) => voi
                         }
                     }}
                 >
-                    <p>add bot</p>
+                    <p>thêm máy</p>
                 </div>
             ) : (
                 <></>

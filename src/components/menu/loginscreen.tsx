@@ -27,7 +27,7 @@ export default function LoginScreen(props: {
                                 SetRegisterMode(false);
                             }}
                         >
-                            LOGIN
+                            ĐĂNG NHẬP
                         </button>
                         <button
                             data-selected={doRegister === true}
@@ -35,7 +35,7 @@ export default function LoginScreen(props: {
                                 SetRegisterMode(true);
                             }}
                         >
-                            REGISTER
+                            ĐĂNG KÝ
                         </button>
                     </nav>
                     <br />
@@ -44,7 +44,7 @@ export default function LoginScreen(props: {
                             <input
                                 id="login-name"
                                 type="text"
-                                placeholder="name"
+                                placeholder="tên"
                             />
                         ) : (
                             <></>
@@ -57,14 +57,14 @@ export default function LoginScreen(props: {
                         <input
                             type="password"
                             id="login-password"
-                            placeholder="password"
+                            placeholder="mật khẩu"
                         />
                         <p>
-                            remember this account
+                            ghi nhớ tài khoản
                             <input
                                 type="checkbox"
                                 style={{ display: "inline-block" }}
-                                placeholder="password"
+                                placeholder="mật khẩu"
                                 id="rememberacc"
                             />
                         </p>

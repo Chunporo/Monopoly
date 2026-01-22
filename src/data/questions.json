@@ -1,0 +1,652 @@
+[
+    {
+        "id": 1,
+        "category": "Giai cấp",
+        "question": "Theo quan điểm của chủ nghĩa Mác - Lênin, nguyên nhân trực tiếp dẫn đến sự ra đời của giai cấp là gì?",
+        "options": [
+            "Sự xuất hiện của chế độ tư hữu về tư liệu sản xuất",
+            "Sự phát triển của lực lượng sản xuất",
+            "Sự chênh lệch về trình độ nhận thức",
+            "Chiến tranh và bạo lực giữa các bộ lạc"
+        ],
+        "correctIndex": 0,
+        "difficulty": "medium"
+    },
+    {
+        "id": 2,
+        "category": "Giai cấp",
+        "question": "Định nghĩa đầy đủ nhất về giai cấp của V.I.Lênin được nêu trong tác phẩm nào?",
+        "options": [
+            "Làm gì?",
+            "Nhà nước và Cách mạng",
+            "Sáng kiến vĩ đại",
+            "Chủ nghĩa duy vật và chủ nghĩa kinh nghiệm phê phán"
+        ],
+        "correctIndex": 2,
+        "difficulty": "hard"
+    },
+    {
+        "id": 3,
+        "category": "Giai cấp",
+        "question": "Trong định nghĩa về giai cấp của Lênin, đặc trưng nào là cơ bản và quan trọng nhất?",
+        "options": [
+            "Địa vị trong hệ thống sản xuất xã hội",
+            "Vai trò trong tổ chức quản lý lao động",
+            "Quan hệ đối với tư liệu sản xuất",
+            "Phương thức và quy mô thu nhập"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 4,
+        "category": "Dân tộc",
+        "question": "Hình thức cộng đồng người nào xuất hiện trước khi hình thành dân tộc?",
+        "options": [
+            "Thị tộc",
+            "Bộ lạc",
+            "Bộ tộc",
+            "Gia đình"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 5,
+        "category": "Dân tộc",
+        "question": "Dân tộc được hình thành chủ yếu gắn liền với chế độ xã hội nào?",
+        "options": [
+            "Cộng sản nguyên thủy",
+            "Chiếm hữu nô lệ",
+            "Phong kiến",
+            "Chủ nghĩa tư bản"
+        ],
+        "correctIndex": 3,
+        "difficulty": "medium"
+    },
+    {
+        "id": 6,
+        "category": "Dân tộc",
+        "question": "Yếu tố nào sau đây KHÔNG phải là một trong 4 đặc trưng cơ bản của dân tộc?",
+        "options": [
+            "Cộng đồng về lãnh thổ",
+            "Cộng đồng về kinh tế",
+            "Cộng đồng về tôn giáo",
+            "Cộng đồng về ngôn ngữ"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 7,
+        "category": "Dân tộc",
+        "question": "Đặc trưng quan trọng nhất liên kết các nội dung khác của dân tộc lại thành một khối thống nhất là gì?",
+        "options": [
+            "Cộng đồng về lãnh thổ",
+            "Cộng đồng về kinh tế",
+            "Cộng đồng về văn hóa - tâm lý",
+            "Cộng đồng về ngôn ngữ"
+        ],
+        "correctIndex": 1,
+        "difficulty": "hard"
+    },
+    {
+        "id": 8,
+        "category": "Lý luận chung",
+        "question": "Trong mối quan hệ giữa giai cấp và dân tộc, yếu tố nào đóng vai trò quyết định?",
+        "options": [
+            "Dân tộc quyết định giai cấp",
+            "Giai cấp quyết định dân tộc",
+            "Hai yếu tố tác động ngang nhau",
+            "Tùy thuộc vào hoàn cảnh lịch sử cụ thể"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 9,
+        "category": "Giai cấp",
+        "question": "Cuộc đấu tranh giai cấp là động lực phát triển của xã hội nào?",
+        "options": [
+            "Mọi xã hội trong lịch sử",
+            "Xã hội có giai cấp và đối kháng giai cấp",
+            "Xã hội xã hội chủ nghĩa",
+            "Xã hội cộng sản nguyên thủy"
+        ],
+        "correctIndex": 1,
+        "difficulty": "easy"
+    },
+    {
+        "id": 10,
+        "category": "Dân tộc",
+        "question": "V.I.Lênin đã chỉ ra bao nhiêu xu hướng khách quan của sự phát triển dân tộc?",
+        "options": [
+            "Một xu hướng",
+            "Hai xu hướng",
+            "Ba xu hướng",
+            "Bốn xu hướng"
+        ],
+        "correctIndex": 1,
+        "difficulty": "easy"
+    },
+    {
+        "id": 11,
+        "category": "Dân tộc",
+        "question": "Xu hướng thứ nhất của sự phát triển dân tộc là gì?",
+        "options": [
+            "Các dân tộc liên hiệp lại với nhau",
+            "Sự thức tỉnh ý thức dân tộc, tách ra thành lập các quốc gia độc lập",
+            "Xóa bỏ mọi ranh giới dân tộc",
+            "Toàn cầu hóa về kinh tế"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 12,
+        "category": "Dân tộc",
+        "question": "Cương lĩnh dân tộc của chủ nghĩa Mác - Lênin bao gồm mấy nội dung chủ yếu?",
+        "options": [
+            "2 nội dung",
+            "3 nội dung",
+            "4 nội dung",
+            "5 nội dung"
+        ],
+        "correctIndex": 1,
+        "difficulty": "easy"
+    },
+    {
+        "id": 13,
+        "category": "Dân tộc",
+        "question": "Nội dung nào sau đây nằm trong Cương lĩnh dân tộc của Lênin?",
+        "options": [
+            "Các dân tộc hoàn toàn bình đẳng",
+            "Các dân tộc phải thống nhất ngôn ngữ",
+            "Các dân tộc lớn có quyền lãnh đạo",
+            "Xóa bỏ biên giới quốc gia ngay lập tức"
+        ],
+        "correctIndex": 0,
+        "difficulty": "easy"
+    },
+    {
+        "id": 14,
+        "category": "Dân tộc",
+        "question": "Quyền tự quyết của dân tộc được hiểu là:",
+        "options": [
+            "Quyền áp đặt ý chí lên dân tộc khác",
+            "Quyền tự lựa chọn chế độ chính trị và con đường phát triển của dân tộc mình",
+            "Quyền biệt lập, đóng cửa với thế giới",
+            "Quyền ly khai vô điều kiện trong mọi hoàn cảnh"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 15,
+        "category": "Giai cấp",
+        "question": "Sứ mệnh lịch sử của giai cấp công nhân là gì?",
+        "options": [
+            "Duy trì chế độ tư bản chủ nghĩa nhưng cải cách nó",
+            "Lật đổ giai cấp tư sản nhưng giữ nguyên quan hệ sản xuất",
+            "Xóa bỏ chế độ tư bản chủ nghĩa, xây dựng chủ nghĩa xã hội và chủ nghĩa cộng sản",
+            "Trở thành giai cấp bóc lột mới thay thế giai cấp tư sản"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 16,
+        "category": "Việt Nam",
+        "question": "Ở Việt Nam, sự hình thành dân tộc (quốc gia - dân tộc) có đặc điểm gì khác biệt so với châu Âu?",
+        "options": [
+            "Hình thành muộn hơn chủ nghĩa tư bản",
+            "Hình thành gắn liền với quá trình dựng nước và giữ nước, trước khi có chủ nghĩa tư bản",
+            "Hình thành do sự áp đặt của thực dân",
+            "Hình thành hoàn toàn dựa trên yếu tố tôn giáo"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 17,
+        "category": "Lý luận chung",
+        "question": "Cơ sở để giải quyết đúng đắn vấn đề dân tộc là gì?",
+        "options": [
+            "Lập trường của giai cấp tư sản",
+            "Lập trường của giai cấp phong kiến",
+            "Lập trường của giai cấp công nhân",
+            "Chủ nghĩa dân tộc cực đoan"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 18,
+        "category": "Giai cấp",
+        "question": "Giai cấp công nhân đại diện cho phương thức sản xuất nào?",
+        "options": [
+            "Phương thức sản xuất phong kiến",
+            "Phương thức sản xuất tư bản chủ nghĩa",
+            "Phương thức sản xuất tiên tiến, hiện đại (cộng sản chủ nghĩa)",
+            "Phương thức sản xuất nhỏ, lẻ"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 19,
+        "category": "Dân tộc",
+        "question": "Nội dung 'Liên hiệp công nhân tất cả các dân tộc' phản ánh bản chất gì của phong trào công nhân?",
+        "options": [
+            "Bản chất dân tộc",
+            "Bản chất quốc tế",
+            "Bản chất cục bộ",
+            "Bản chất biệt phái"
+        ],
+        "correctIndex": 1,
+        "difficulty": "easy"
+    },
+    {
+        "id": 20,
+        "category": "Việt Nam",
+        "question": "Hồ Chí Minh đã kết hợp vấn đề dân tộc với vấn đề giai cấp như thế nào?",
+        "options": [
+            "Đặt lợi ích giai cấp lên trên lợi ích dân tộc",
+            "Độc lập dân tộc gắn liền với chủ nghĩa xã hội",
+            "Chỉ quan tâm đến giải phóng dân tộc, bỏ qua giai cấp",
+            "Chỉ quan tâm đến đấu tranh giai cấp, xem nhẹ độc lập dân tộc"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 21,
+        "category": "Giai cấp",
+        "question": "Theo Mác, 'Giai cấp vô sản mỗi nước trước hết phải giành lấy chính quyền, phải tự vươn lên thành ... của dân tộc'. Điền vào chỗ trống.",
+        "options": [
+            "giai cấp lãnh đạo",
+            "dân tộc",
+            "ông chủ",
+            "lực lượng duy nhất"
+        ],
+        "correctIndex": 1,
+        "difficulty": "hard"
+    },
+    {
+        "id": 22,
+        "category": "Dân tộc",
+        "question": "Thực chất của vấn đề dân tộc trong thời đại ngày nay là gì?",
+        "options": [
+            "Xung đột tôn giáo",
+            "Tranh chấp lãnh thổ",
+            "Đấu tranh chống áp bức, bóc lột giữa các dân tộc; giữa chủ nghĩa thực dân và các dân tộc bị áp bức",
+            "Cạnh tranh thương mại"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 23,
+        "category": "Lý luận chung",
+        "question": "Tại sao nói lợi ích của giai cấp công nhân phù hợp với lợi ích của dân tộc?",
+        "options": [
+            "Vì công nhân chiếm đa số trong dân tộc",
+            "Vì công nhân là giai cấp giàu có nhất",
+            "Vì giai cấp công nhân không có lợi ích riêng đối lập với lợi ích chân chính của dân tộc",
+            "Vì công nhân nắm giữ toàn bộ tư liệu sản xuất ngay từ đầu"
+        ],
+        "correctIndex": 2,
+        "difficulty": "hard"
+    },
+    {
+        "id": 24,
+        "category": "Giai cấp",
+        "question": "Mâu thuẫn cơ bản trong xã hội tư bản chủ nghĩa là mâu thuẫn giữa:",
+        "options": [
+            "Lực lượng sản xuất xã hội hóa cao và quan hệ sản xuất dựa trên chế độ chiếm hữu tư nhân tư bản chủ nghĩa",
+            "Công nhân và nông dân",
+            "Các tập đoàn tư bản với nhau",
+            "Chủ nghĩa tư bản và chế độ phong kiến"
+        ],
+        "correctIndex": 0,
+        "difficulty": "medium"
+    },
+    {
+        "id": 25,
+        "category": "Giai cấp",
+        "question": "Biểu hiện về mặt xã hội của mâu thuẫn cơ bản trong chủ nghĩa tư bản là mâu thuẫn giữa:",
+        "options": [
+            "Giai cấp chủ nô và nô lệ",
+            "Giai cấp địa chủ và nông dân",
+            "Giai cấp tư sản và giai cấp vô sản",
+            "Thành thị và nông thôn"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 26,
+        "category": "Dân tộc",
+        "question": "Trong các cộng đồng người sau, cộng đồng nào là hình thức phát triển cao nhất?",
+        "options": [
+            "Bộ lạc",
+            "Thị tộc",
+            "Bộ tộc",
+            "Dân tộc"
+        ],
+        "correctIndex": 3,
+        "difficulty": "easy"
+    },
+    {
+        "id": 27,
+        "category": "Dân tộc",
+        "question": "Tính chất của nhà nước trong xã hội có giai cấp phụ thuộc vào yếu tố nào?",
+        "options": [
+            "Ý chí của người đứng đầu",
+            "Bản chất của giai cấp thống trị",
+            "Nguyện vọng của toàn dân",
+            "Truyền thống văn hóa"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 28,
+        "category": "Việt Nam",
+        "question": "Đại hội nào của Đảng Cộng sản Việt Nam khẳng định: 'Đại đoàn kết toàn dân tộc là đường lối chiến lược của cách mạng Việt Nam'?",
+        "options": [
+            "Đại hội VI",
+            "Đại hội VIII",
+            "Đại hội IX",
+            "Đại hội XII"
+        ],
+        "correctIndex": 2,
+        "difficulty": "hard"
+    },
+    {
+        "id": 29,
+        "category": "Lý luận chung",
+        "question": "Chủ nghĩa Mác - Lênin phản đối quan điểm nào về vấn đề dân tộc?",
+        "options": [
+            "Chủ nghĩa yêu nước chân chính",
+            "Chủ nghĩa quốc tế vô sản",
+            "Chủ nghĩa dân tộc cực đoan và chủ nghĩa sô-vanh nước lớn",
+            "Quyền bình đẳng dân tộc"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 30,
+        "category": "Giai cấp",
+        "question": "Điều kiện khách quan quy định sứ mệnh lịch sử của giai cấp công nhân là gì?",
+        "options": [
+            "Sự lãnh đạo của Đảng Cộng sản",
+            "Địa vị kinh tế - xã hội và đặc điểm chính trị - xã hội của giai cấp công nhân",
+            "Số lượng đông đảo của giai cấp công nhân",
+            "Sự ủng hộ của giai cấp nông dân"
+        ],
+        "correctIndex": 1,
+        "difficulty": "hard"
+    },
+    {
+        "id": 31,
+        "category": "Dân tộc",
+        "question": "Xu hướng thứ hai của sự phát triển dân tộc (liên hiệp các dân tộc) nổi lên mạnh mẽ trong giai đoạn nào?",
+        "options": [
+            "Thời kỳ đầu của chủ nghĩa tư bản",
+            "Thời kỳ chủ nghĩa tư bản chuyển sang giai đoạn đế quốc chủ nghĩa",
+            "Thời kỳ phong kiến",
+            "Thời kỳ công xã nguyên thủy"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 32,
+        "category": "Việt Nam",
+        "question": "Thành phần kinh tế nào được xem là nòng cốt trong thời kỳ quá độ lên chủ nghĩa xã hội ở Việt Nam, đại diện cho phương thức sản xuất mới?",
+        "options": [
+            "Kinh tế tư nhân",
+            "Kinh tế nhà nước",
+            "Kinh tế có vốn đầu tư nước ngoài",
+            "Kinh tế tập thể"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 33,
+        "category": "Giai cấp",
+        "question": "Theo Lênin, để thực hiện sứ mệnh lịch sử của mình, giai cấp công nhân cần phải thành lập tổ chức nào?",
+        "options": [
+            "Công đoàn",
+            "Hội nghề nghiệp",
+            "Đảng Cộng sản",
+            "Mặt trận tổ quốc"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 34,
+        "category": "Lý luận chung",
+        "question": "Câu nói 'Vô sản toàn thế giới và các dân tộc bị áp bức đoàn kết lại' là của ai?",
+        "options": [
+            "C.Mác",
+            "Ph.Ăngghen",
+            "V.I.Lênin",
+            "Hồ Chí Minh"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 35,
+        "category": "Dân tộc",
+        "question": "Giải quyết vấn đề dân tộc được xem là:",
+        "options": [
+            "Mục tiêu cuối cùng của cách mạng vô sản",
+            "Một nội dung của cách mạng vô sản",
+            "Không liên quan đến cách mạng vô sản",
+            "Chỉ là nhiệm vụ của giai cấp tư sản"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 36,
+        "category": "Dân tộc",
+        "question": "Tâm lý, tính cách của một dân tộc được biểu hiện thông qua:",
+        "options": [
+            "Luật pháp",
+            "Nền văn hóa dân tộc",
+            "Hệ thống kinh tế",
+            "Biên giới lãnh thổ"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 37,
+        "category": "Giai cấp",
+        "question": "Con đường để xóa bỏ giai cấp, theo chủ nghĩa Mác - Lênin là gì?",
+        "options": [
+            "Hòa giải giai cấp",
+            "Thỏa hiệp giai cấp",
+            "Cách mạng xã hội chủ nghĩa",
+            "Cải cách ruộng đất"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 38,
+        "category": "Việt Nam",
+        "question": "Trong tư tưởng Hồ Chí Minh, động lực chủ yếu của sự phát triển nước Việt Nam là gì?",
+        "options": [
+            "Đấu tranh giai cấp gay gắt",
+            "Sự viện trợ của quốc tế",
+            "Đại đoàn kết toàn dân tộc",
+            "Phát triển kinh tế thị trường"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 39,
+        "category": "Lý luận chung",
+        "question": "Áp bức dân tộc thực chất bắt nguồn từ:",
+        "options": [
+            "Áp bức giai cấp",
+            "Sự khác biệt văn hóa",
+            "Sự khác biệt ngôn ngữ",
+            "Khoảng cách địa lý"
+        ],
+        "correctIndex": 0,
+        "difficulty": "hard"
+    },
+    {
+        "id": 40,
+        "category": "Dân tộc",
+        "question": "Khái niệm 'Bộ tộc' (Nationality) khác với 'Dân tộc' (Nation) chủ yếu ở điểm nào?",
+        "options": [
+            "Bộ tộc chưa có lãnh thổ riêng",
+            "Bộ tộc chưa có sự liên kết chặt chẽ về kinh tế thành một thị trường thống nhất",
+            "Bộ tộc không có ngôn ngữ chung",
+            "Bộ tộc không có văn hóa chung"
+        ],
+        "correctIndex": 1,
+        "difficulty": "hard"
+    },
+    {
+        "id": 41,
+        "category": "Giai cấp",
+        "question": "Giai cấp nào là người đào huyệt chôn chủ nghĩa tư bản?",
+        "options": [
+            "Giai cấp nông dân",
+            "Tầng lớp tri thức",
+            "Giai cấp tư sản",
+            "Giai cấp vô sản"
+        ],
+        "correctIndex": 3,
+        "difficulty": "easy"
+    },
+    {
+        "id": 42,
+        "category": "Dân tộc",
+        "question": "Quyền bình đẳng giữa các dân tộc là cơ sở để thực hiện quyền nào?",
+        "options": [
+            "Quyền dân tộc tự quyết",
+            "Quyền áp bức dân tộc khác",
+            "Quyền đồng hóa dân tộc",
+            "Quyền lãnh đạo thế giới"
+        ],
+        "correctIndex": 0,
+        "difficulty": "medium"
+    },
+    {
+        "id": 43,
+        "category": "Việt Nam",
+        "question": "Vấn đề dân tộc ở Việt Nam hiện nay chủ yếu là vấn đề gì?",
+        "options": [
+            "Đấu tranh giành độc lập",
+            "Giải quyết xung đột sắc tộc vũ trang",
+            "Đoàn kết, tương trợ cùng phát triển giữa các dân tộc",
+            "Phân chia lại lãnh thổ"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 44,
+        "category": "Lý luận chung",
+        "question": "Theo Ph.Ăngghen, sự diệt vong của nhà nước là một quá trình như thế nào?",
+        "options": [
+            "Nhà nước bị xóa bỏ ngay lập tức sau cách mạng",
+            "Nhà nước 'tự tiêu vong' khi không còn giai cấp",
+            "Nhà nước tồn tại vĩnh viễn",
+            "Nhà nước chuyển hóa thành công ty cổ phần"
+        ],
+        "correctIndex": 1,
+        "difficulty": "hard"
+    },
+    {
+        "id": 45,
+        "category": "Dân tộc",
+        "question": "Trong thời đại ngày nay, việc giải quyết vấn đề dân tộc phải gắn liền với:",
+        "options": [
+            "Chống toàn cầu hóa",
+            "Đấu tranh chống chủ nghĩa khủng bố",
+            "Cuộc đấu tranh chống chủ nghĩa đế quốc và các thế lực thù địch",
+            "Bảo vệ môi trường"
+        ],
+        "correctIndex": 2,
+        "difficulty": "medium"
+    },
+    {
+        "id": 46,
+        "category": "Giai cấp",
+        "question": "Cơ cấu xã hội - giai cấp trong thời kỳ quá độ lên CNXH có đặc điểm gì?",
+        "options": [
+            "Thuần nhất, chỉ còn một giai cấp",
+            "Tồn tại đan xen nhiều giai cấp, tầng lớp do tồn tại nhiều thành phần kinh tế",
+            "Chỉ còn hai giai cấp đối kháng",
+            "Giống hệt xã hội tư bản"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    },
+    {
+        "id": 47,
+        "category": "Việt Nam",
+        "question": "Chính sách dân tộc của Đảng và Nhà nước ta bao gồm các nguyên tắc:",
+        "options": [
+            "Bình đẳng, đoàn kết, tôn trọng, giúp nhau cùng phát triển",
+            "Tự do, bình đẳng, bác ái",
+            "Độc lập, tự chủ, tự cường",
+            "Hợp tác, cạnh tranh, cùng có lợi"
+        ],
+        "correctIndex": 0,
+        "difficulty": "medium"
+    },
+    {
+        "id": 48,
+        "category": "Lý luận chung",
+        "question": "Chủ nghĩa xã hội khoa học xem xét vấn đề dân tộc dựa trên lập trường của giai cấp nào?",
+        "options": [
+            "Giai cấp nông dân",
+            "Tầng lớp trí thức",
+            "Giai cấp công nhân",
+            "Toàn thể nhân loại"
+        ],
+        "correctIndex": 2,
+        "difficulty": "easy"
+    },
+    {
+        "id": 49,
+        "category": "Dân tộc",
+        "question": "Yếu tố nào đóng vai trò thúc đẩy mạnh mẽ quá trình hình thành dân tộc?",
+        "options": [
+            "Sự phát triển của tôn giáo",
+            "Sự phát triển của quan hệ sản xuất tư bản chủ nghĩa và thị trường",
+            "Các cuộc chiến tranh xâm lược",
+            "Sự gia tăng dân số"
+        ],
+        "correctIndex": 1,
+        "difficulty": "hard"
+    },
+    {
+        "id": 50,
+        "category": "Tổng hợp",
+        "question": "Mục tiêu cuối cùng của việc giải quyết vấn đề dân tộc và giai cấp là:",
+        "options": [
+            "Xây dựng một quốc gia hùng mạnh nhất thế giới",
+            "Xóa bỏ hoàn toàn sự áp bức, bóc lột, xây dựng xã hội cộng sản văn minh",
+            "Tiêu diệt hết các giai cấp bóc lột bằng bạo lực",
+            "Chia đều tài sản cho mọi người"
+        ],
+        "correctIndex": 1,
+        "difficulty": "medium"
+    }
+]
