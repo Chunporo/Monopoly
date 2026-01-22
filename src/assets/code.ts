@@ -1,5 +1,5 @@
 import * as CryptoJS from "crypto-js";
-import Config from "../config.ts";
+import Config from "../config";
 
 export function TranslateCode(ip: string) {
 	const hashed = CryptoJS.SHA256(Config.CODE_PREFIX + ip).toString(

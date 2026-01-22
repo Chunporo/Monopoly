@@ -1353,7 +1353,7 @@ div.chance-card[data-b-image="chance"] {
 }
 
 div.chance-card[data-b-image="chest"] {
-    background-image: url("/special/chest.png");
+    background-image: url("/chest.png");
     background-size: 200px;
 }
 

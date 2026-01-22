@@ -1,6 +1,6 @@
 import Peer, { DataConnection, PeerOptions } from "peerjs";
 import { TranslateCode, code } from "./code";
-import Config from "../config.ts";
+import Config from "../config";
 
 const peerOptions: PeerOptions = {
 	// @ts-ignore

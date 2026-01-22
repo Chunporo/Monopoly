@@ -8,7 +8,7 @@ import { GameProvider } from "./services/GameContext.tsx";
 
 const router = createBrowserRouter([
     {
-        path: "Monopoly",
+        path: "/",
         element: (
             <GameProvider defaultBackend="firebase">
                 <Home />
@@ -16,11 +16,11 @@ const router = createBrowserRouter([
         ),
     },
     {
-        path: "Monopoly/gallery",
+        path: "/gallery",
         element: <Gallery />,
     },
     {
-        path: "/Monopoly/users",
+        path: "/users",
         element: <Users />,
     },
 ]);
