@@ -45,17 +45,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
-          cache: 'npm'
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build Tauri App
         uses: tauri-apps/tauri-action@v0
